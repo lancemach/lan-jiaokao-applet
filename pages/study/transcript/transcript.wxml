@@ -1,0 +1,56 @@
+<!--pages/study/transcript/transcript.wxml-->
+<view class="bg" style="background:linear-gradient(120deg, {{ bgColor }}, {{ bgColorHigh }});{{ setStyle }}">
+  <image class="pentagon pentagon-big" src="../../../static/image/pentagon-big.svg" />
+  <image class="pentagon pentagon-min" src="../../../static/image/pentagon-min.svg" />
+</view>
+<lan-headbar
+    fixed
+    left-arrow
+    left-arrow-color="rgba(255, 255, 255, .8)"
+    ghost-bar
+    title="{{ lanTtitle }}"
+    title-color="#fff"
+    bar-hieght="{{ config.customComponent.navBarHeight }}"
+    class="lan-headbar-fixed"
+    bind:click-left="onclickLeft"
+/>
+<view class="container" style="{{ setStyle }}">
+    <view class="f2-box">
+        <lan-f2 class="f2-chart" id="f2-gauge-chart" canvas-id="column" opts="{{ opts }}">{{ options.scores_value }}</lan-f2>
+    </view>
+    <view class="details">
+        <view class="box flex-box flex-box-jcc">
+            <view class="item">用时 :<text class="text"> {{ options.usedTime }}</text>科目 :<text class="text"> {{ options.typeName + ' ' + options.type }}</text></view>
+        <!-- <view class="item">时间：<text class="text">{{ dayTime }}</text></view> -->
+        </view>
+    </view>
+    <view class="interaction safety-distance-around">
+        <view class="item lmbox-radius flex-box flex-box-jcb flex-box-aic" bind:tap="bindAction" data-id="{{1}}">
+            <view class="left">
+                <view class="title text-clo6">本次共答错<text style="color:{{config.skin.errorColors}}"> {{ options.wrong }} </text>题</view>
+                <view class="tips text text-cloA">现在回顾，错题记得更牢固</view>
+            </view>
+            <view class="right flex-box flex-box-jcs flex-box-aic">
+                <text class="text text-cloA">总结错误</text><lan-iconfont class="icon" name="lan-icon-arrow-right" size="30" color="#ccc" />
+            </view>
+        </view>
+        <view class="item lmbox-radius flex-box flex-box-jcb flex-box-aic" bind:tap="bindAction" data-id="{{2}}">
+            <view class="left">
+                <view class="title text-clo6">回顾试卷</view>
+                <view class="tips text text-cloA">题目拿捏不准，看看专家分析</view>
+            </view>
+            <view class="right flex-box flex-box-jcs flex-box-aic">
+                <text class="text text-cloA">马上查看</text><lan-iconfont class="icon" name="lan-icon-arrow-right" size="30" color="#ccc" />
+            </view>
+        </view>
+        <view class="item lmbox-radius flex-box flex-box-jcb flex-box-aic" bind:tap="bindAction" data-id="{{3}}">
+            <view class="left">
+                <view class="title text-clo6">再考一次</view>
+                <view class="tips text text-cloA">成绩不满意，再考一次证明实力</view>
+            </view>
+            <view class="right flex-box flex-box-jcs flex-box-aic">
+                <text class="text text-cloA">立即重考</text><lan-iconfont class="icon" name="lan-icon-arrow-right" size="30" color="#ccc" />
+            </view>
+        </view>
+    </view>
+</view>

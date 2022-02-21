@@ -1,0 +1,122 @@
+@import '../common/index.wxss';
+.nav-bar {
+  width: 100vw;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #fff;
+  background-color: var(--nav-bar-background-color, #fff);
+}
+.nav-bar.fixed-bar {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+}
+.nav-bar-box {
+  position: relative;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+.nav-bar.ghost-bar {
+  background: none;
+}
+
+.van-hairline--bottom.ghost-bar::after {
+  opacity: .08;
+}
+.nav-bar-text {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 -16px;
+  margin: 0 -var(--padding-md, 16px);
+  padding: 0 16px;
+  padding: 0 var(--padding-md, 16px);
+  color: var(--nav-bar-text-color);
+  color: #111;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav-bar-text--hover {
+  background-color: #f2f3f5;
+  background-color: var(--active-color, #f2f3f5)
+}
+
+.nav-bar.ghost-bar  .nav-bar-text--hover {
+  background-color: transparent
+}
+
+.nav-bar-arrow, .nav-bar-location {
+  vertical-align: middle;
+  font-size: 16px;
+  font-size: var(--nav-bar-arrow-size, 16px);
+  color: #555;
+  color: var(--nav-bar-text-color, #555)
+}
+
+.nav-bar-arrow:active {
+  background-color: rgba(0, 0, 0, .06);
+}
+
+.nav-bar-title {
+  max-width: 60%;
+  margin: 0 auto;
+  color: #323233;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.nav-bar-left {
+  position: relative;
+  margin-left: var(--safety-distance-minus-number);
+}
+.nav-bar-left,
+.nav-bar-right {
+  /* height: 100%; */
+  /* position: absolute;
+  bottom: 0; */
+  font-size: 14px;
+  font-size: var(--font-size-md, 14px)
+}
+
+/* .nav-bar-left {
+  left: 10px;
+  left: var(--padding-md, 10px)
+}
+
+.nav-bar-right {
+  right: 10px;
+  right: var(--padding-md, 10px)
+} */
+.nav-bar-arrow, .right-block {
+  position: relative;
+  z-index: 9;
+  width: 80rpx;
+  height: 100%;
+}
+.right-block {
+  position: relative;
+  margin-right: var(--safety-distance-minus-number);
+  opacity: 0;
+  text-indent: 999em;
+}
+
+.nav-bar-location {
+  left: -8rpx;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.nav-bar-middle {
+  position: absolute;
+  z-index: 7;
+  top: 0;
+  left: calc(100rpx + var(--safety-distance-number));
+  right: calc(100rpx + var(--safety-distance-number));
+  height: 100%;
+}

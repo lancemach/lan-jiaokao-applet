@@ -1,0 +1,40 @@
+<!--pages/study/symbol/list/index.wxml-->
+<view class="container van-hairline--top">
+    <block wx:if="{{! empty}}">
+        <view class="symbol">
+            <block wx:for="{{ symbol }}" wx:key="index">
+                <view class="item safety-distance-around van-hairline--top white-box" bind:tap="bindGoSymbol" data-id="{{ item.id }}">
+                    <view class="h2 flex-box flex-box-jcb flex-box-aic">
+                        <view class="text-fw6 text-clo3">{{ item.name }}</view>
+                        <view class="num flex-box flex-box-aic">
+                            <text class="text text-cloA">{{ item.son.length }}张</text>
+                            <lan-icon name="arrow" size="18" color="#e2e2e2" />
+                        </view>
+                    </view>
+                    <view class="media">
+                        <block wx:for="{{ item.son }}" wx:for-item="son" wx:key="index">
+                            <block wx:if="{{index <= 3}}">
+                                <image
+                                    src="{{ son.pic }}"
+                                    mode="aspectFill"
+                                    style="width: 140rpx; height:140rpx; margin-right: 34rpx"
+                                    class="image lmbox-radius"
+                                />
+                            </block>
+                        </block>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="pull-down-refresh flex-box flex-box-jcc flex-box-aic" wx:if="{{ isLoading.enabled }}">
+            <lan-loading wx:if="{{ isLoading.downRefresh }}" color="#e2e2e2" text-size="28rpx" size="48rpx"> 更多加载中...</lan-loading>
+            <view class="lan-divider" wx:else>
+                <lan-divider hairline customStyle="color: #c8c8c8; border-color: #eee; font-size: 26rpx;margin:0" contentPosition="center">{{config.params.dividerText}}</lan-divider>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <lan-empty description="还没有任何车考信息，哦！" />
+    </block>
+    <lan-loading-page v-if="loadingStart" loading-title="{{ title }}" loading-start="{{ loadingStart }}" />
+</view>

@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "lan-switch": "/components/switch/index",
+    "lan-cell": "/components/cell/index",
+    "lan-cell-group": "/components/cell-group/index"
+  }
+}

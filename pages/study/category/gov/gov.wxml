@@ -1,0 +1,6 @@
+<!--pages/study/category/gov/gov.wxml-->
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <web-view src="{{ config.hostURL }}12122"></web-view>
+  </view>
+</view>

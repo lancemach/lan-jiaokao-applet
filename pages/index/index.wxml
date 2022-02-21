@@ -1,0 +1,231 @@
+<!--index.wxml-->
+<lan-headbar
+  fixed
+  bar-hieght="{{ config.customComponent.navBarHeight }}"
+  class="lan-headbar-fixed"
+>
+    <view slot="left" class="header-left flex-box flex-box-aic flex-box-jcs safety-distance">
+      <image
+        src="{{ site.logo }}"
+        style="width:{{ site.logo_width || '65rpx' }};height:{{ site.logo_height || '65rpx' }};border-radius: {{ site.logo_radius || '0' }};"
+        class="logo"
+      />
+      <text class="name text-clo3">{{ site.name }}</text>
+    </view>
+</lan-headbar>
+<view class="container" style="{{ setStyle }}">
+  <view class="page-section van-hairline--top safety-distance white-box">
+    <view class="menu menu-tab">
+      <view class="lan-tabs flex-box felx-box-jcb lan-box-col">
+        <view
+          data-id="{{ item.id }}"
+          data-text="{{ item.name }}"
+          class="tab lan-box-c4 lmbox-pos-rle text-fw7 text-clo3 flex-box flex-box-jcc {{ subjectId === item.id ? 'active-tab' : '' }}"
+          style="position: relative; left: -20rpx; top: 0rpx; color: {{ subjectId === item.id ? config.skin.primaryColors : '#333' }}"
+          wx:for="{{ drivingSubject }}"
+          wx:key="index"
+          bind:tap="onTabActive"
+        >
+          {{ item.name }}
+          <view class="indicator-dots" style="background:{{ subjectId === item.id ? '' + config.skin.primaryColors : 'none' }}"></view>
+        </view>
+      </view>
+    </view>
+    <view class="swiper swiper-min">
+      <swiper
+        class="swiper-main square-dot lmbox-overflow-hidden lmbox-radius"
+        indicator-dots="true"
+        circular="true"
+        autoplay="true"
+      >
+        <block
+          wx:for="{{ slider }}"
+          wx:key="index"
+          autoplay
+          circular
+          next-margin="{{ '12px' }}"
+        >
+          <swiper-item class="swiper-item">
+            <view class="item" mode="cover" style="background: url({{item.pic || item.path}}) no-repeat 50%;background-size: cover;"></view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <!-- 科二、三 -->
+    <view class="course-box course-two" wx:if="{{ subjectId == 2 || subjectId == 3 }}">
+      <view class="item-box article lan-card-col flex-box flex-box-jcb">
+        <view bindtap="bindGoPages" data-id="{{ subjectId == 2 ? 11 : 7 }}" class="lan-box-c4 flex-box flex-box-dc flex-box-jcc">
+          <lan-iconfont name="lan-icon-zaixiankaoshi" class="flex-box flex-box-jcc" size="70" />
+          <view class="text">{{ subjectName }}介绍</view>
+        </view>
+        <view bindtap="bindGoPages" data-id="{{ subjectId == 2 ? 4 : 8 }}" class="lan-box-c4 flex-box flex-box-dc flex-box-jcc">
+          <lan-iconfont name="lan-icon-fuwuzhengce" class="flex-box flex-box-jcc" size="70" />
+          <view class="text">{{ subjectName }}要领</view>
+        </view>
+        <view bindtap="bindGoPages" data-id="{{ subjectId == 2 ? 5 : 9 }}" class="lan-box-c4 flex-box flex-box-dc flex-box-jcc">
+          <lan-iconfont name="lan-icon-daipaidan" class="flex-box flex-box-jcc" size="70" />
+          <view class="text">考试流程</view>
+        </view>
+        <view bindtap="bindGoPages" data-id="{{ subjectId == 2 ? 6 : 10 }}" class="lan-box-c4 flex-box flex-box-dc flex-box-jcc">
+          <lan-iconfont name="lan-icon-wodeyiban" class="flex-box flex-box-jcc" color="{{ config.skin.primaryColors }}" size="70" />
+          <view class="text" style="color:{{config.skin.primaryColors}}">考试秘籍</view>
+        </view>
+      </view>
+      <view class="item-box title flex-box flex-box-jcb flex-box-aic">
+        <view class="name text-fw7 text-clo3">训练项目</view>
+        <view class="tips">共{{ study.list.total }}条优质视频</view>
+      </view>
+      <view class="item-box media flex-box flex-box-jcb">
+        <block wx:if="{{ ! study.list }}">
+          <view class="flex-box flex-box-jcc flex-box-aic" style="width: 100%;">
+            <lan-loading size="24px">加载中...</lan-loading>
+          </view>
+        </block>
+        <block wx:else>
+        
+          <view class="box lan-box-col2" wx:for="{{ study.list.drives }}" wx:key="index">
+            <view bindtap="bindGoDrives" data-subjects="{{ subjectId }}" data-id="{{ item.id }}" class="image-box media-box lmbox-radius lmbox-pos-rle lmbox-overflow-hidden">
+              <image
+                src="{{ item.pic }}"
+                mode="widthFix"
+                class="image"
+              />
+              <view class="shade lmbox-pos-ale flex-box flex-box-jcc flex-box-dc flex-box-aic">
+                <view class="title">{{ item.name }}</view>
+                <view class="time">{{ item.times }}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- <view class="more-btn"  bindtap="bindGoDrives" data-subjects="{{ subjectId }}" data-id="{{ 0 }}" wx:if="{{ study.list }}">
+        <view class="text">更多优质视频</view>
+        <lan-icon name="arrow-down" color="#e2e2e2" />
+      </view> -->
+    </view>
+    <!-- 科一、四 -->
+    <view class="course-box course-one" wx:if="{{ subjectId == 1 || subjectId == 4 }}">
+      <view class="grid-box flex-box flex-box-jcb">
+        <view class="grid-item">
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-page="vip" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon orange">
+              <lan-iconfont name="lan-icon-huiyuan" color="#fff" size="40" />
+            </view>
+            <view class="title">尊贵会员</view>
+          </view>
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-rule="collect" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon red">
+              <lan-iconfont name="lan-icon-shoucang" color="#fff" size="38" />
+            </view>
+            <view class="title">经典收藏</view>
+          </view>
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-rule="undone" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon blue">
+              <lan-iconfont name="lan-icon-fankui" color="#fff" size="40" />
+            </view>
+            <view class="title">未作练习</view>
+          </view>
+          <!-- <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-rule="vip" data-login="{{ 1 }}"> -->
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-page="{{ vip.ets1 == 1 ? '' : 'paper' }}" data-rule="{{ vip.ets1 == 1 ? 'vip' : '' }}" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon green">
+              <lan-iconfont name="lan-icon-xunzhang" color="#fff" size="40" />
+            </view>
+            <view class="title t">考前密卷</view>
+          </view>
+        </view>
+        <view class="grid-item leader flex-box flex-box-jcc">
+          <view class="item blue flex-box flex-box-jcc flex-box-dc" bind:tap="bindToExamination" data-login="{{ 1 }}">
+            <view class="title text-fw6">顺序练习</view>
+            <view class="info"><text class="text">{{ study.collect_answered_sum || 0 }}</text>/<text class="text">{{ study.question_total }}</text></view>
+          </view>
+          <view class="item red flex-box flex-box-jcc flex-box-dc" bind:tap="bindToExamination" data-simulation="{{ 1 }}" data-login="{{ 1 }}">
+            <view class="title text-fw6">模拟考试</view>
+            <view class="info">精品仿真</view>
+          </view>
+        </view>
+        <view class="grid-item">
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-rule="errors" data-login="{{ 1 }}">
+              <view class="flex-box flex-box-jcc flex-box-aic icon red">
+                <lan-iconfont name="lan-icon-yujing" color="#fff" size="40" />
+              </view>
+              <view class="title">错题练习</view>
+          </view>
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-page="symbol-list" data-tid="{{ 2 }}" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon green">
+              <lan-iconfont name="lan-icon-safety-belt" color="#fff" size="54" />
+            </view>
+            <view class="title">图标技巧</view>
+          </view>
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-page="collect" data-tid="{{ 1 }}" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon orange">
+              <lan-iconfont name="lan-icon-fankui" color="#fff" size="40" />
+            </view>
+            <view class="title">专项训练</view>
+          </view>
+          <view class="item mini flex-box flex-box-jcc" bind:tap="bindToExamination" data-page="record" data-login="{{ 1 }}">
+            <view class="flex-box flex-box-jcc flex-box-aic icon blue">
+              <lan-iconfont name="lan-icon-zuji" color="#fff" size="40" />
+            </view>
+            <view class="title">考试记录</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page-section grade-box van-hairline--top white-box">
+    <view class="safety-distance flex-box flex-box-jcb">
+      <view class="city flex-box flex-box-jcs flex-box-aic text-clo3" data-page="city" bind:tap="bindGotoPage">
+        <lan-iconfont class="icon" name="lan-icon-weizhi" size="36" />{{ location.city || '西安' }}
+      </view>
+      <view class="class flex-box flex-box-jcs flex-box-aic" data-page="studyCategoryForm" bind:tap="bindGotoPage">
+        <lan-iconfont class="icon" name="lan-icon-{{ study.pinyin }}" color="{{ config.skin.primaryColors }}" size="55" />
+        <view class="info">
+          <view class="name text-clo3">{{ study.name }}题库</view>
+          <!-- <view class="tips">c1、c2、c3</view> -->
+        </view>
+        <lan-icon name="arrow" color="#d2d2d2" />
+      </view>
+    </view>
+  </view>
+  <view class="gov12122">
+    <view class="gov safety-distance flex-box flex-box-jcb" bind:tap="bindGov12122">
+      <view class="box max lmbox-radius-half lmbox-pos-rle white-box">
+        <view class="title text-fw7 text-clo3">交通管理 12122</view>
+        <view class="info flex-box flex-box-jcs">
+          <lan-iconfont name="lan-icon-jingcha" size="100" />
+          <view class="list">
+            <view class="text">使用指南</view>
+            <view class="text">违章处理</view>
+          </view>
+        </view>
+      </view>
+      <view class="box">
+        <view class="min lmbox-radius-half lmbox-pos-rle white-box flex-box flex-box-jcs flex-box-aic">
+          <lan-iconfont class="icon flex-box flex-box-jcc flex-box-aic lmbox-pos-ale" name="lan-icon-yuyue1" size="74" />
+          <text class="text text-clo3">预约考试</text>
+        </view>
+        <view class="min lmbox-radius-half lmbox-pos-rle white-box flex-box flex-box-jcs flex-box-aic">
+          <lan-iconfont class="icon flex-box flex-box-jcc flex-box-aic lmbox-pos-ale" name="lan-icon-fen" color="#EC4341" size="60" />
+          <text class="text text-clo3">成绩查询</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <lan-copyright />
+  <lan-tabbar
+    wx:if="{{ tabbar && isTabBar }}"
+    class="lan-tabbar"
+    list="{{ tabbar }}"
+    name="{{ name }}"
+    hieght-bar="{{ config.customComponent.tabBarHeight }}"
+    bindchange="tabChange"
+  />
+  <lan-loading-page
+    v-if="loadingStart"
+    loading-title="{{ title }}"
+    loading-type="{{ loadingType }}"
+    loading-start="{{ loadingStart }}"
+    bind:getLoadingDataCom="bindLoadingDataCom"
+  />
+</view>

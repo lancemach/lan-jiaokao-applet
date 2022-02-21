@@ -1,0 +1,28 @@
+/* pages/study/media/details/index.wxss */
+@import '../../../../components/common/style/hairline.wxss';
+.container {
+    background-color: #fff;
+    height: 100vh;
+    overflow: hidden;
+}
+#video {
+    width: 100%;
+    height: 420rpx;
+}
+.video-box {
+    background-color: #000
+}
+.details .title .h1{
+    font-size: 40rpx;
+    height: 45rpx;
+    line-height: 100%;
+}
+.details .title .times {
+    font-size: 28rpx;
+}
+.details .info {
+    padding-top: 28rpx;
+    margin-top: 28rpx;
+    height: calc(100vh - 588rpx);
+    overflow-y: auto;
+}

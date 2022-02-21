@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/study/transcript/transcript",
+    "pages/study/exam/exam",
+    "pages/study/category/form",
+    "pages/login/login",
+    "pages/logs/logs",
+    "pages/study/category/gov/gov",
+    "pages/login/wechart/wechart",
+    "pages/study/record/record",
+    "pages/study/category/category",
+    "pages/page/index",
+    "pages/study/media/list/index",
+    "pages/study/media/details/index",
+    "pages/study/symbol/list/index",
+    "pages/study/symbol/details/index",
+    "pages/study/paper/index",
+    "pages/mine/vip/index",
+    "pages/mine/index/index",
+    "pages/mine/wechart/index",
+    "pages/copyright/lancema/index",
+    "pages/mine/card/index",
+    "pages/mine/character/index",
+    "pages/buys/index"
+  ],
+  "usingComponents": {
+    "lan-icon": "./components/icon/index",
+    "lan-iconfont": "./components/iconfont/iconfont",
+    "lan-toast": "./components/toast/index",
+    "lan-notify": "./components/notify/index",
+    "lan-button": "./components/button/index",
+    "lan-divider": "./components/divider/index",
+    "lan-loading-page": "./components/loading-page/index",
+    "lan-loading": "./components/loading/index",
+    "lan-tabbar": "./components/lan-tabbar/index",
+    "lan-headbar": "./components/lan-headbar/index",
+    "lan-copyright": "./components/copyright/index"
+  },
+  "window": {
+    "navigationStyle": "default",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "车轮宝典",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于当前城市区域位置展示"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

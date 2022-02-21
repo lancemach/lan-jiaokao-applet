@@ -1,0 +1,11 @@
+<!-- components/copyright/index.wxml -->
+<view class="copyright">
+    <view class="copyright-lancema">
+        <text class="words text" style="color:{{ textColor }}">{{ config.copyright.date }}</text>
+        <text class="text" style="color:{{ textColor }}">{{ config.productName }}</text>
+    </view>
+    <view class="copyright-data ^flex-box ^flex-box-jcc">
+        <!-- <lan-iconfont class="icon skycon-icon" color="{{ iconColor }}" name="lan-icon-lifang" size="22" opacity=".4" /> -->
+        <text class="text" style="color:{{ textColor }}">蓝思同学{{ config.copyright.data }}</text>
+    </view>
+</view>

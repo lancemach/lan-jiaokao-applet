@@ -1,0 +1,22 @@
+<!--pages/study/paper/index.wxml-->
+<view class="container">
+    <view class="paper">
+        <view class="paper-style"
+            style="background: url({{ config.hostURL }}/static/image/paper_bag.png) no-repeat 50% 30%;background-size: 100% auto;"
+        >
+        </view>
+        <view class="info">
+            <view class="h2 text-fw6 text-clo1">智能计算  直击考题</view>
+            <view class="h3 text-clo1">考不过最高补偿 <text class="text text-fw7" style="color:{{config.skin.primaryColors}}">100元</text></view>
+            <lan-button
+                color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+                block
+                round
+                custom-class="vip-btn"
+                bind:tap="bindGoVIP"
+            >
+                开通会员解锁密卷
+            </lan-button>
+        </view>
+    </view>
+</view>

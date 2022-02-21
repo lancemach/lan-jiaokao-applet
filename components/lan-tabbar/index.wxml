@@ -1,0 +1,29 @@
+<!--components/lan-tabbar/index.wxml-->
+<view class="tab-bar" style="height:{{ hieghtBar }}rpx">
+  <block wx:if="{{ custom }}">
+    <slot name="custom" />
+  </block>
+  <block wx:else>
+    <view
+      wx:for="{{ list }}"
+      wx:key="index"
+      class="tab-bar-item"
+      data-path="{{ item.page }}"
+      data-index="{{ index }}"
+      data-name="{{ item.name }}"
+      bindtap="switchTab"
+    >
+      <lan-iconfont
+        name="lan-icon-{{ item.icon + (name === item.name ? '-ing' : '') }}"
+        size="52"
+        style="opacity: .96;"
+      />
+      <view
+        class="tab-bar-text"
+        style="color: {{name === item.name ? selectedColor : color}}"
+      >
+        {{item.title}}
+      </view>
+    </view>
+  </block>
+</view>

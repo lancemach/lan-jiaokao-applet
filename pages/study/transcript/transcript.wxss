@@ -1,0 +1,78 @@
+/* pages/study/transcript/transcript.wxss */
+.bg, .pentagon-big, .pentagon-min, .trilateral {
+    position: absolute;
+}
+.bg {
+    z-index: -1;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    height: calc( 540rpx + var(--navbar-safe-area-height));
+    height: calc( 540rpx + var(--navbar-safe-area-height));
+}
+pentagon-big, .pentagon-min {
+    opacity: .6;
+}
+.trilateral {
+    width: 100%;
+    height: 26rpx;
+    right: 0;
+    top: -24rpx;
+}
+.trilateral.opacity {
+    height: 38rpx;
+    top: -8rpx;
+    opacity: .2;
+}
+.pentagon-big {
+    width: 148rpx;
+    height: 136rpx;
+    top: 120rpx;
+    right: 12%;
+    opacity: .4;
+}
+.pentagon-min {
+    width: 86rpx;
+    height: 74rpx;
+    top: 30rpx;
+    right: 30%;
+}
+.container {
+    background: none;
+}
+.f2-box, .f2-chart {
+    width: 100vw;
+    height: 460rpx;
+}
+.details .box {
+    text-align: center;
+    padding-left: 30rpx;
+    color: #fff;
+}
+.details .box .text {
+    margin-right: 30rpx;
+    margin-left: 18rpx;
+}
+.interaction {
+    padding-top: 80rpx;
+}
+.interaction .item {
+    background-color: #fbfbfb;
+    border-radius: 10rpx;
+    padding: 30rpx 20rpx 30rpx 30rpx;
+    border: solid 1px #f2f2f2;
+    margin-bottom: 20rpx;
+}
+.interaction .item:active {
+    background-color: #fff;
+}
+.interaction .item .title {
+    margin: 0 0 6rpx;
+}
+.interaction .item .text {
+    font-size: 28rpx;
+}
+.interaction .item .icon{
+    margin-left: 12rpx;
+}

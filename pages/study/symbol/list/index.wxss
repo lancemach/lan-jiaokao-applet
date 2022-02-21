@@ -1,0 +1,22 @@
+/* pages/study/symbol/list/index.wxss */
+@import '../../../../components/common/style/hairline.wxss';
+.symbol {
+    border-top: solid 10rpx #F4F4F4;
+}
+.item:first-child::after{
+    border: none;
+}
+
+.item .h2 {
+    font-size: 40rpx;
+    margin: 14rpx 0 20rpx;
+}
+.item .h2 .num {
+    font-size: 30rpx;
+}
+.item .h2 .text {
+    margin-right: 4rpx;
+}
+.list-info {
+    
+}

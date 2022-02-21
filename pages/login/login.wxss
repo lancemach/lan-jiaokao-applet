@@ -1,0 +1,141 @@
+/* pages/login/login.wxss */
+.login-box {
+    width: 80%;
+}
+.login-info .h2 {
+    font-size: 56rpx;
+    margin-bottom: 100rpx;
+}
+.login-heade {
+    margin-bottom: 25rpx;
+}
+.login-heade .text{
+    font-size: 32rpx;
+    margin-right: 6rpx;
+}
+.input-box {
+    margin-bottom: 25rpx;
+    position: relative;
+}
+.input-box .error {
+    position: absolute;
+    bottom: -50rpx;
+    font-size: 30rpx;
+    color: #EE0A24;
+}
+.input-box .ghost-btn {
+    position: absolute;
+    z-index: 19;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: none;
+    display: block;
+}
+.lma-input {
+    display: block;
+    height: 70rpx;
+    padding: 35rpx 0 15rpx;
+    line-height: 180%;
+    font-size: 54rpx;
+    border-bottom: 1px solid #e2e2e2;
+}
+.lma-password {
+    font-size: 30rpx;
+}
+.display-password.lma-password {
+    font-size: 54rpx !important;
+}
+.lma-input-pld {
+    font-size: 48rpx;
+    color: #d2d2d2;
+    font-size: 700;
+}
+.eye-btn {
+    position: absolute !important;
+    right: 0 !important;
+    top: 38rpx !important;
+    z-index: 99 !important;
+    padding: 20rpx !important;
+    
+}
+.closed-eye {
+    color: #b2b2b2 !important;
+}
+.text-code-btn {
+    position: absolute;
+    z-index: 9;
+    right: 0;
+    top: 50%;
+    margin: -35rpx -50rpx 0 0;
+    height: 40rpx;
+    padding: 10px 50rpx;
+    font-size: 32rpx;
+    transition: all ease-in-out .2s;
+    -webkit-transition: all ease-in-out .2s;
+}
+.login-btn {
+    width: 100% !important;
+    font-size: 36rpx !important;
+    font-weight: 600 !important;
+    height:100rpx !important;
+    box-shadow: 13rpx 3rpx 10rpx #f2f2f2 !important;
+}
+/* .loading-btn {} */
+.login-dis-btn {
+    background-color: #f2f2f2 !important;
+    border-color: #efefef !important;
+    color: #a1a1a1 !important;
+}
+.login-btn.loading-btn, .login-dis-btn {
+    box-shadow: none !important
+}
+.login-copyright {
+    padding-bottom: 40rpx;
+    font-size: 26rpx;
+    color: #808080;
+    text-align: center;
+}
+.wechart-login {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 80vh;
+}
+.wechart-login-box {
+    padding-top: 16vh;
+    text-align: center;
+    width: 75vw;
+}
+.wechart-login-box .image {
+    width: 180rpx;
+    height: 180rpx;
+    margin-bottom: 30rpx;
+}
+.wechart-login-box .title {
+    font-size: 32rpx;
+}
+.wechart-login-box .name {
+    font-size: 38rpx;
+    margin-top: 4rpx;
+}
+.wechart-login-btn {
+    margin-top: 28vh;
+}
+.login-text {
+    font-size: 38rpx;
+    margin-left: 16rpx;
+}
+.login-privacy-agreement {
+    font-size: 24rpx;
+    margin: 10rpx 0 78rpx;
+}
+.login-privacy-agreement .van-checkbox__label {
+    color: #808080;
+    margin-left: 10rpx;
+}

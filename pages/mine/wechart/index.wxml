@@ -1,0 +1,47 @@
+<!--pages/mine/wechart/index.wxml-->
+<view class="container">
+    <view class="list-info white-box">
+        <view class="info safety-distance-around van-hairline--top">
+            <view class="header flex-box flex-box-jcs">
+                <view class="left">
+                    <view class="avatar-box lmbox-radius-half">
+                        <image
+                            src="{{ userInfo.avatarUrl }}"
+                            mode="aspectFill"
+                            class="avatar lmbox-radius-half"
+                        />
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="h2 text-fw7 text-clo1">{{ userInfo.name || userInfo.nickName }}</view>
+                    <view class="h3">账号：{{ userInfo.username }}</view>
+                    <view wx:if="{{! updated}}" class="update-btn van-hairline--surround flex-box flex-box-jcc flex-box-aic"
+                        bind:tap="bindUserUpdateInfo"
+                    ><lan-icon name="exchange" style="margin-right: 8rpx" />更新信息</view>
+                </view>
+            </view>
+        </view>
+        <view class="info list safety-distance">
+            <view class="item flex-box flex-box-jcb">
+                <view class="left title text-fw6 text-clo1">姓名</view>
+                <view class="right text">{{ userInfo.name || '-' }}</view>
+            </view>
+            <view class="item flex-box flex-box-jcb van-hairline--top">
+                <view class="left title text-fw6 text-clo1">电话</view>
+                <view class="right text">{{ userInfo.phone }}</view>
+            </view>
+            <view class="item flex-box flex-box-jcb van-hairline--top">
+                <view class="left title text-fw6 text-clo1">性别</view>
+                <view class="right text">{{ userInfo.sex }}</view>
+            </view>
+            <!-- <view class="item flex-box flex-box-jcb van-hairline--top">
+                <view class="left title text-fw6 text-clo1">身份</view>
+                <view class="right text">{{ userInfo.vip }}</view>
+            </view> -->
+            <view class="item flex-box flex-box-jcb van-hairline--top">
+                <view class="left title text-fw6 text-clo1">更新</view>
+                <view class="right text">{{ userInfo.updated_time }}</view>
+            </view>
+        </view>
+    </view>
+</view>

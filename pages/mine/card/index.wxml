@@ -1,0 +1,44 @@
+<!--pages/mine/card/index.wxml-->
+<view class="container">
+    <block wx:if="{{ empty}}">
+        <view class="interaction safety-distance-around">
+            <!-- cards -->
+            <block wx:if="{{ 2 }}">
+                <view class="item cards-box learn lmbox-radius" bind:tap="bindGeToPages">
+                    <view class="cards">
+                        <view class="flex-box flex-box-jcb flex-box-aic">
+                            <view class="h2 text-fw7 text-cloF">车轮学车会员卡</view>
+                            <view class="h4">年卡</view>
+                        </view>
+                        <view class="time">2021-5-30</view>
+                        <view class="number text-fw7 text-cloF">6101 0211 6150 2365</view>
+                        <lan-iconfont name="lan-icon-vip1" size="220" color="rgba(255, 255, 255, .1)" class="vip-icon" />
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{ 2 }}">
+                <view class="item cards-box usage lmbox-radius" bind:tap="bindGeToPages">
+                    <view class="cards">
+                        <view class="flex-box flex-box-jcb flex-box-aic">
+                            <view class="h2 text-fw7 text-cloF">车轮用车会员卡</view>
+                            <view class="h4">年卡</view>
+                        </view>
+                        <view class="time">2021-5-30</view>
+                        <view class="number text-fw7 text-cloF">6101 0211 6150 2365</view>
+                        <lan-iconfont name="lan-icon-vip1" size="220" color="rgba(255, 255, 255, .1)" class="vip-icon" />
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="pull-down-refresh flex-box flex-box-jcc flex-box-aic" wx:if="{{ isLoading.enabled }}">
+            <lan-loading wx:if="{{ isLoading.downRefresh }}" color="#e2e2e2" text-size="28rpx" size="48rpx"> 更多加载中...</lan-loading>
+            <view class="lan-divider" wx:else>
+                <lan-divider hairline customStyle="color: #c8c8c8; border-color: #eee; font-size: 26rpx;margin:0" contentPosition="center">{{config.params.dividerText}}</lan-divider>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <lan-empty description="还没有任何考试信息，哦！" />
+    </block>
+    <lan-loading-page v-if="loadingStart" loading-title="{{ title }}" loading-start="{{ loadingStart }}" />
+</view>

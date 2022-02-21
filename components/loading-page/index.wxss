@@ -1,0 +1,67 @@
+/* components/loading/index.wxss */
+.loading-module{
+    display: block;
+    height: 100vh;
+    width: 100vw;
+  }
+.loading-main, .loading-box.is-loading {
+    height: 100vh;
+    width: 100vw;
+  }
+.loading-box {
+    position: fixed;
+    left: -999em;
+    z-index: -9;
+    width: 0;
+    height: 0;
+}
+.loading-box.is-loading {
+    z-index: 99;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.loading {
+    text-align: center;
+}
+.loading-media-box {
+     position: relative;
+     margin-top: -160rpx;
+     opacity: .92;
+}
+.loading-media-box .loading{
+
+    width: 460rpx;
+    height: 420rpx;
+}
+  
+  
+.loading-text {
+    margin-top: 60rpx;
+    font-size: 28rpx;
+    text-indent: 28rpx;
+    color: rgba(0, 0, 0, .3);
+}
+
+.loading-copyright {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30rpx;
+    text-align: center;
+}
+
+.loading-copyright .text {
+    margin: 0 10rpx;
+    font-size: 9px;
+    color: rgba(0, 0, 0, .2);
+}
+
+.loading-cloud-box,
+.load-cloud {
+    position: relative;
+    z-index: 100;
+    width: 114rpx;
+    height: 84rpx;
+}

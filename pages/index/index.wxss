@@ -1,0 +1,185 @@
+@import '../../components/common/style/hairline.wxss';
+/**index.wxss**/
+.grade-box {
+    margin-bottom: 10rpx;
+    padding: 25rpx 0;
+    font-size: 30rpx;
+}
+.grade-box .city .icon {
+    position: relative;
+    top: 2rpx;
+    margin-right: 6rpx;
+    opacity: .6;
+}
+.grade-box .class .icon {
+    opacity: .8;
+}
+.grade-box .info {
+    margin: 0 12rpx 0 20rpx;
+}
+.grade-box .info .tips {
+    font-size: 24rpx;
+}
+.grade-box .icon-box {
+    width: 60rpx;
+    height: 60rpx;
+}
+.menu-tab {
+    padding-top: 34rpx;
+}
+.swiper {
+    padding-top: 20rpx;
+}
+.course-box {
+    padding-top: 50rpx;
+    overflow: hidden;
+}
+.grid-box .grid-item {
+    padding: 0 6%;
+    width: 110rpx;
+    text-align: center;
+}
+.grid-box .grid-item.leader {
+    padding: 32rpx 0 0 0;
+    width: 40%;
+    position: relative;
+}
+.grid-box .item.mini .icon {
+    width: 74rpx;
+    height: 74rpx;
+    border-radius: 50%;
+    margin-bottom: 12rpx;
+    overflow: hidden;
+    
+}
+.grid-box .grid-item .item.mini {
+    margin-top: 12rpx;
+    margin-bottom: 40rpx;
+}
+.grid-box .grid-item.leader .item{
+    position: relative;
+    margin-bottom: 28rpx;
+    height: 208rpx; 
+    width: 208rpx;
+    /* padding-top: 58rpx; */
+    border-radius: 50%;
+    color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+
+}
+.grid-box .item .title {
+    font-size: 24rpx;
+    
+}
+.grid-box .leader .item .title {
+    font-size: 34rpx;
+    margin-bottom: 6rpx;
+}
+.grid-box .leader .item .info {
+    font-size: 24rpx;
+    opacity: .9;
+}
+.grid-box .leader .item .icon {
+    /* position: absolute; */
+    bottom: 60rpx;
+    right: 50%;
+    opacity: .9;
+    /* margin-right: -20rpx; */
+    right: 35rpx;
+    bottom: -15rpx;
+    margin: 0;
+    opacity: .3;
+}
+.blue {
+    background-color: #0895FE;
+    background: linear-gradient(125deg, #3DC8FF 0, #0895FE 40%);
+    box-shadow: 2rpx 6rpx 10rpx rgba(8, 149, 254, .2), -2rpx -6rpx 10rpx rgba(8, 149, 254, .2);
+}
+.green  {
+    background-color: #2DC417;
+    background: linear-gradient(125deg, #A1E36D 0, #2DC417 40%);
+    box-shadow: 2rpx 6rpx 10rpx rgba(45, 196, 23, .2), -2rpx -6rpx 10rpx rgba(45, 196, 23, .2);
+}
+.red {
+    background-color: #FD6260;
+    background: linear-gradient(125deg, #F499B4 0, #FD6260 40%);
+    box-shadow: 2rpx 6rpx 10rpx rgba(253, 98, 96, .2), -2rpx -6rpx 10rpx rgba(253, 98, 96, .2);
+}
+.orange {
+    background-color: #FA8C35;
+    background: linear-gradient(125deg, #FCAA85 0, #FA8C35 40%);
+    box-shadow: 2rpx 6rpx 10rpx rgba(250, 140, 53, .2), -2rpx -6rpx 10rpx rgba(250, 140, 53, .2);
+}
+.gov12122 {
+    padding-top: 20rpx;
+}
+.gov .box {
+    width: calc( 50% - 14rpx );
+}
+.gov .box.max {
+    height: 175rpx;
+    width: calc( 50% - 74rpx );
+}
+.gov .box.max, .gov .box .min {
+    margin-bottom: 15rpx;
+    padding: 25rpx 30rpx;
+    box-sizing: content-box;
+}
+.gov .box .min {
+    height: 56rpx;
+    line-height: 56rpx;
+}
+.gov .box .icon {
+    width: 80rpx;
+    height: 80rpx;
+    top: 50%;
+    margin-top: -40rpx;
+}
+.gov .box .min .text {
+    margin-left: 104rpx;
+    font-size: 32rpx;
+}
+.gov .box .title {
+    font-size: 34rpx;
+}
+.gov .box .info {
+    margin-top: 25rpx;
+}
+.gov .box .list {
+    padding-left: 24rpx;
+    font-size: 28rpx;
+}
+.gov .box .list .text {
+    padding: 6rpx 0;
+}
+.item-box.title .article {
+    padding: 10rpx 0 16rpx;
+}
+.article .text {
+    text-align: center;
+    font-size: 26rpx;
+    margin-top: 12rpx;
+}
+.item-box.title {
+    margin: 35rpx 0 20rpx;
+}
+.item-box.title .tips {
+    font-size: 28rpx;
+}
+.course-box .media {
+    height: 420rpx;
+}
+.media-box .shade .time {
+    color: rgba(255, 255, 255, .7);
+    font-size: 28rpx;
+}
+.more-btn {
+    padding: 25rpx 0 15rpx;
+    text-align: center;
+    font-size: 26rpx;
+}
+.more-btn .text {
+    width: 100%;
+    color: #b2b2b2;
+}

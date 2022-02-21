@@ -1,0 +1,23 @@
+<!--pages/mine/character/index.wxml-->
+<view class="container">
+    <view class="list-info safety-distance-around border-t14 white-box">
+        <view class="info list">
+            <view class="item flex-box flex-box-jcb flex-box-aic" bindtap="bindGeCharacter" data-id="{{ 1 }}">
+                <view class="left title text-fw6 text-clo1">我是学员</view>
+                <view class="right text"><lan-icon wx:if="{{ character == 1 }}" color="{{ config.skin.primaryColors }}" name="success" /></view>
+            </view>
+            <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" bindtap="bindGeCharacter" data-id="{{ 2 }}">
+                <view class="left title text-fw6 text-clo1">我是车主</view>
+                <view class="right text"><lan-icon wx:if="{{ character == 2 }}" color="{{ config.skin.primaryColors }}" name="success" /></view>
+            </view>
+            <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" bindtap="bindGeCharacter" data-id="{{ 3 }}">
+                <view class="left title text-fw6 text-clo1">我是教练</view>
+                <view class="right text"><lan-icon wx:if="{{ character == 3 }}" color="{{ config.skin.primaryColors }}" name="success" /></view>
+            </view>
+            <!-- <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" bindtap="bindGeCharacter" data-id="{{ 4 }}">
+                <view class="left title text-fw6 text-clo1">我是店主</view>
+                <view class="right"><lan-icon wx:if="{{ character == 4 }}" color="{{ config.skin.primaryColors }}" name="success" /></view>
+            </view> -->
+        </view>
+    </view>
+</view>

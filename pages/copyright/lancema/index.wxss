@@ -1,0 +1,55 @@
+/* pages/lancema/index.wxss */
+.lancema-box {
+    padding-top: 20%;
+}
+.lancema {
+    text-align: center;
+    font-size: 30rpx;
+}
+/* .lancema .logo {
+    margin-bottom: 180rpx;
+} */
+.lancema .name {
+    margin-bottom: 10rpx;
+}
+.lancema .logo .icon {
+    margin: 0 auto;
+}
+.wx-code {
+    position: relative;
+}
+.code-box {
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 50%;
+}
+.wx-code.wx-code-max {
+    
+    /* left: 50%;
+    margin-left: -40rpx; */
+    
+}
+.wx-code.wx-code-min .code-box {
+    margin-left: -60rpx;
+}
+.wx-code.wx-code-min .pic {
+    width: 120rpx;
+    height: 120rpx;
+}
+.wx-code.wx-code-max .code-box {
+    top: -90rpx;
+    margin-left: -140rpx;
+}
+.wx-code.wx-code-max .pic {
+    width: 280rpx;
+    height: 280rpx;
+}
+.system {
+    font-size: 26rpx;
+    color: #b2b2b2;
+    margin: 100rpx 0 0 30rpx;
+}
+.system .item {
+    margin-bottom: 6rpx;
+}

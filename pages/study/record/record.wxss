@@ -1,0 +1,37 @@
+/* pages/study/record/record.wxss */
+@import '../../../components/common/style/hairline.wxss';
+.container {
+    /* height: 100vh; */
+    background-color: #eaeaea;
+    /* overflow-y: auto; */
+    /* border-top: solid 10rpx #e2e2e2; */
+}
+.interaction {
+    padding-top: 10rpx;
+}
+.interaction .item {
+    border-radius: 10rpx;
+    padding: 30rpx 20rpx 30rpx 30rpx;
+    margin-top: 14rpx;
+}
+
+.interaction .item .title {
+    margin: 0 0 12rpx;
+}
+.interaction .item .text {
+    font-size: 28rpx;
+}
+.interaction .item .icon{
+    margin: 0 8rpx 0 22rpx;
+}
+.interaction .item .score {
+    margin-right: 25rpx;
+    height: 110rpx;
+    width: 110rpx;
+    line-height: 110rpx;
+    text-align: center;
+    background-color: #f6f6f6;
+    border-radius: 50%;
+    font-size: 48rpx;
+    overflow: hidden;
+}

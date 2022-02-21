@@ -1,0 +1,36 @@
+{
+    "cSpell.words": [
+        "app",
+        "const",
+        "data",
+        "export",
+        "get",
+        "has",
+        "info",
+        "open",
+        "set",
+        "setting",
+        "status",
+        "that",
+        "true",
+        "type",
+        "user"
+    ],
+    "cSpell.ignoreWords": [
+        "chinese",
+        "const",
+        "encode",
+        "export",
+        "false",
+        "function",
+        "get",
+        "idx",
+        "key",
+        "param",
+        "pinyin",
+        "polyphone",
+        "splitter",
+        "url",
+        "withtone"
+    ]
+}

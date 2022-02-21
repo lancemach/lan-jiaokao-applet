@@ -1,0 +1,27 @@
+/* components/copyright/index.wxss */
+.copyright {
+    padding: 60rpx 20rpx 28rpx;
+    text-align: center;
+    color: rgba(0, 0, 0, .2);
+    font-size: 10px;
+}
+
+.copyright-lancema {
+    margin-bottom: 14rpx;
+}
+
+.copyright-lancema .text {
+    margin: 0 8rpx;
+}
+
+.copyright-lancema .words {
+    font-size: 11px;
+}
+
+.copyright-data {
+    font-size: 9px;
+}
+
+.copyright-data .icon {
+    margin-right: 8rpx
+}

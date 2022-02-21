@@ -1,0 +1,32 @@
+/* pages/study/paper/index.wxss */
+.container {
+    background-color: #fff;
+}
+.paper-style {
+    width: 100vw;
+    height: 80vh;
+    background-size: contain;
+}
+.info {
+    text-align: center;
+    position: fixed;
+    bottom: 5vh;
+    width: 100vw;
+    min-height: 20vh;
+    padding-top: 50rpx;
+    background-color: rgba(255, 255, 255, .7);
+}
+.info .h2 {
+    font-size: 54rpx;
+    margin-bottom: 30rpx;
+}
+.info .h3 {
+    font-size: 38rpx;
+}
+.info .h3 .text {
+    font-size: 50rpx;
+}
+.info .vip-btn {
+    width: 78vw;
+    margin-top: 10vh;
+}

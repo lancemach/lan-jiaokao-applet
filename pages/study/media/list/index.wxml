@@ -1,0 +1,41 @@
+<!--pages/study/media/list/index.wxml-->
+<view class="container van-hairline--top">
+    <block wx:if="{{! empty}}">
+        <view class="safety-distance-around">
+            <block wx:for="{{ drives }}" wx:key="index">
+                <view class="item flex-box flex-box-jcs van-hairline--top" bind:tap="bindGoDrives" data-id="{{ item.id }}"  data-subjects="{{ item.subjects }}">
+                    <view class="left media">
+                        <lan-iconfont name="lan-icon-play" class="iconfont" color="rgba(255, 255, 255, .35)" size="38" />
+                        <image
+                            src="{{ item.pic }}"
+                            mode="widthFix"
+                            class="image lmbox-radius"
+                        />
+                    </view>
+                    <view class="right flex-box flex-box-dc flex-box-block">
+                        <view class="title text-clo3 flex-box flex-box-jcb">
+                            <view class="h2">{{ item.name }} </view>
+                        </view>
+                        <view class="tips text text-cloA">
+                            <view>
+                                {{ item.times || '05:00' }}
+                            </view>
+                            <view >{{ item.date_time }}</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="pull-down-refresh flex-box flex-box-jcc flex-box-aic" wx:if="{{ isLoading.enabled }}">
+            <lan-loading wx:if="{{ isLoading.downRefresh }}" color="#e2e2e2" text-size="28rpx" size="48rpx"> 更多加载中...</lan-loading>
+            <view class="lan-divider" wx:else>
+                <lan-divider hairline customStyle="color: #c8c8c8; border-color: #eee; font-size: 26rpx;margin:0" contentPosition="center">{{config.params.dividerText}}</lan-divider>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <lan-empty description="还没有任何车考信息，哦！" />
+    </block>
+    <lan-loading-page v-if="loadingStart" loading-title="{{ title }}" loading-start="{{ loadingStart }}" />
+</view>
+

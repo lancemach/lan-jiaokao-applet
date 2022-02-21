@@ -1,0 +1,65 @@
+/* pages/mine/card/index.wxss */
+.cards-box {
+    position: relative;
+    z-index: 0;
+    margin-bottom: 25rpx;
+    height: 210rpx;
+    color: rgba(255, 255, 255, .7);
+    overflow: hidden;
+}
+
+.cards-box::before, .cards-box::after {
+    position: absolute;
+    z-index: 1;
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .04);
+    overflow: hidden;
+}
+/* .cards-box::before {
+    width: 350rpx;
+    height: 350rpx;
+    left: -10%;
+    top: -50%;
+}
+.cards-box::after {
+    width: 120rpx;
+    height: 120rpx;
+    right: -5%;
+    top: -20%;
+} */
+.cards-box.learn {
+    background: linear-gradient(105deg, #57C569 0, #40BB54 100%);
+}
+.cards-box.usage {
+    background: linear-gradient(105deg, #5B5861 0, #2A292D 100%);
+}
+
+.cards-box .cards {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+.cards .vip-icon {
+    position: absolute;
+    z-index: 2;
+    right: -30rpx;
+    bottom: -70rpx;
+}
+.cards .h2, .cards .number {
+    font-size: 34rpx;
+}
+.cards .time {
+    font-size: 28rpx;
+}
+.cards .h4 {
+    font-size: 26rpx;
+}
+.cards .number {
+    margin-top: 24rpx;
+}

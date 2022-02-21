@@ -1,0 +1,240 @@
+<!--pages/mine/vip/index.wxml-->
+<view class="container">
+  <lan-headbar
+    bar-hieght="{{ config.customComponent.navBarHeight }}"
+    ghost-bar
+    left-arrow
+    left-text="我的会员"
+    left-arrow-color="#fff"
+    class="lan-headbar-fixed"
+    bind:click-left="onclickLeft"
+  />
+  <view class="card-box" style="{{ setStyle }}"><!-- is-vip-->
+    <image class="pentagon pentagon-big" src="../../../static/image/pentagon-big.svg" />
+    <image class="pentagon pentagon-min" src="../../../static/image/pentagon-min.svg" />
+  </view>
+  <view class="user-box">
+      <view class="user-card">
+        <view class="card {{ type != 1 ? 'super' : '' }}">
+            <lan-iconfont name="lan-icon-vip1" size="320" color="#896337" class="vip-icon" />
+            <view class="card-info flex-box flex-box-dc">
+              <view class="flex-box flex-box-jcb flex-box-block">
+                <view class="user flex-box flex-box-jcs flex-box-ass flex-box-aic">
+                    <view class="avatar-box avatar">
+                        <image class="avatar" src="{{ userInfo.avatarUrl }}" mode="aspectFill" />
+                    </view>
+                    <view class="name card-vip-color">{{ userInfo.name || userInfo.nickName }}</view>
+                </view>
+                <view class="h3 flex-box flex-box-ais card-vip-color">
+                    {{ comboData.name }}年卡
+                </view>
+              </view>
+              <view class="number flex-box flex-box-jcc flex-box-block card-vip-color">{{ vip.sn }}</view>
+              <view class="time flex-box flex-box-jcb flex-box-aie card-vip-color">
+                  <view>{{ site.name || '车轮宝典' }}</view>
+                  <view>有效期<text class="text">{{ vip.end_time || '' }}</text></view>
+              </view> 
+            </view>
+        </view>
+      </view>
+  </view>
+  <view class="introduce safety-distance {{ type != 1 ? 'super' : '' }}">
+      <block wx:if="{{ type == 1 }}">
+        <!-- <view wx:if="{{ ! vip.life }}" class="box box01 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jcs">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">会员套餐</text></view>  
+            </view>
+            <view class="info combo flex-box flex-box-jcb">
+                <view class="item lan-box-c2 lmbox-radius lmbox-pos-rle {{ comboId == 1 ? ' current' : ''}}" bindtap="changeVIPCombo" data-id="{{ 1 }}">
+                    <view class="tips">{{ comboData[0].tips }}</view>
+                    <view class="money text-fw7 text-clo1"><text class="sup">¥</text><text class="num">{{ comboData[0].price }}</text></view>
+                    <view class="text">{{ comboData[0].title }}</view>
+                    <view class="save">{{ comboData[0].save }} / 天</view>
+                </view>
+                <view class="item lan-box-c2 lmbox-radius lmbox-pos-rle {{ comboId == 2 ? ' current' : ''}}" bindtap="changeVIPCombo" data-id="{{ 2 }}">
+                    <view class="img-box">
+                      <image src="{{ config.hostURL }}/static/image/vip1-00.jpg" class="img" mode="aspectFit" />
+                    </view>
+                    <view class="tips">{{ comboData[1].tips }}</view>
+                    <view class="money text-fw7 text-clo1"><text class="sup">¥</text><text class="num">{{ comboData[1].price }}</text></view>
+                    <view class="text">{{ comboData[1].title }}</view>
+                    <view class="save">{{ comboData[1].save }} / 天</view>
+                </view>
+            </view>
+        </view> -->
+        <view class="box box02 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jce">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">只做500题</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip1-01.png" class="img" mode="aspectFit" />
+                    <view class="tips">专属题库 500道高频考题解密</view>
+                  </view>
+                  <view></view>
+                  <view class="right-list">
+                    <view class="list">没时间？</view>
+                    <view class="list">没基础？</view>
+                    <view class="list">着急一次过？</view>
+                  </view>
+                </view>
+                <view class="slogan text-fw7 text-clo1">少做千道题，节省万分钟</view>
+            </view>
+        </view>
+        <view class="box box03 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jcs">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">考前密卷</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="right-list">
+                    <view class="list">智能预测</view>
+                    <view class="list">直击考点</view>
+                    <view class="list">冲刺高分</view>
+                  </view>
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip1-02.png" class="img" mode="aspectFit" />
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="box box04 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jce">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">落榜补偿</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip1-04.jpg" class="img" mode="aspectFit" />
+                  </view>
+                  <view></view>
+                  <view class="right-list">
+                    <view class="list">现金补偿</view>
+                    <view class="list">一次过考</view>
+                  </view>
+                  
+                </view>
+            </view>
+        </view>
+        <view class="box box05 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jcs">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">海量优惠金</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="right-list">
+                    <view class="list">抵购车优惠</view>
+                    <view class="list">面一月租金</view>
+                  </view>
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip1-06.png" class="img" mode="aspectFit" />
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="box box06 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jce">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">双飞旅游</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip1-05.png" class="img" mode="aspectFit" />
+                  </view>
+                  <view class="right-list">
+                    <view class="list">双飞旅游</view>
+                  </view>
+                </view>
+            </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="box box07 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jcs">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">免费洗车</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="right-list">
+                    <view class="list">全城免费洗</view>
+                    <view class="list">一周仅限一次</view>
+                  </view>
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip2-00.jpg" class="img" mode="aspectFit" />
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="box box08 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jce">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">全城加油</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip2-01.jpg" class="img" mode="aspectFit" />
+                  </view>
+                  <view></view>
+                  <view class="right-list">
+                    <view class="list">品质有保障</view>
+                    <view class="list">最低八折优惠</view>
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="box box09 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jcs">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">维修保养</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="right-list">
+                    <view class="list">维修八五折</view>
+                    <view class="list">保养九二折</view>
+                  </view>
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip2-02.jpg" class="img" mode="aspectFit" />
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="box box08 white-box lmbox-radius-half lmbox-pos-rle">
+            <view class="head flex-box flex-box-jce">
+              <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">车主礼包</text></view>
+            </view>
+            <view class="info">
+                <view class="flex-box flex-box-jcb">
+                  <view class="img-box">
+                    <image src="{{ config.hostURL }}/static/image/vip1-06.png" class="img" mode="aspectFit" />
+                  </view>
+                  <view></view>
+                  <view class="right-list">
+                    <view class="list">精品车饰</view>
+                    <view class="list">维修工具箱</view>
+                  </view>
+                </view>
+            </view>
+        </view>
+      </block>
+      
+      <view class="box box white-box lmbox-radius-half lmbox-pos-rle">
+          <view class="head flex-box flex-box-jcc">
+            <view class="title text-fw7 text-clo1 lmbox-pos-rle"><text class="text lmbox-pos-rle">权益说明</text></view>
+          </view>
+          <view class="info lmbox-pos-rle" style="top:-40rpx">
+              <import src="../../../components/wxParse/wxParse.wxml"/>
+              <view class="pages safety-distance-around">
+                  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+              </view>
+          </view>
+      </view>
+  </view>
+  <lan-divider hairline customStyle="color: #c8c8c8; border-color: #eee; font-size: 26rpx;margin:30rpx 0 -10rpx" contentPosition="center">{{config.params.dividerText}}</lan-divider>
+  <view  wx:if="{{ ! vip.life }}" class="footbar-block"></view>
+  <lan-loading-page v-if="loadingStart" loading-title="{{ title }}" loading-start="{{ loadingStart }}" />
+  <view wx:if="{{ ! vip.life }}" class="pay-footbar white-box {{ type != 1 ? 'super' : '' }}">
+    <view class="tips" bindtap="bindGeToPages" data-id="{{ 13 }}" data-page="pages">开通前请阅读<text class="text" style="color:{{ config.skin.primaryColors }}">《车轮宝典会员协议》</text></view>
+    <view bindtap="goPay" class="btn flex-box flex-box-jcc flex-box-aic"><text class="price">¥ {{ comboData.price }}</text>开通{{ comboData.title }}<text class="sup">有效期一年</text></view>
+  </view>
+</view>

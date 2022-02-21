@@ -1,0 +1,22 @@
+/*
+ * @Author: Lance Ma
+ * @Date: 2021-04-07 17:47:19
+ * @LastEditTime: 2021-04-07 18:31:46
+ * @LastEditors: Please set LastEditors
+ * @Description: filter
+ * @FilePath: .\utils\filter.wxs
+ */
+
+ var formatCityName = function (name) {
+     if (name) {
+        var length = name.length || 0
+        var pos = name.indexOf('市')
+        if (length >= pos && length > 2) {
+            return name.substring(0, pos)
+        }
+     }
+    return name;
+  }
+  module.exports = {
+    formatCityName: formatCityName
+  }

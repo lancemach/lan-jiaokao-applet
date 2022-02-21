@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "lan-f2": "../../../components/f2-canvas/f2-canvas"
+  }
+}

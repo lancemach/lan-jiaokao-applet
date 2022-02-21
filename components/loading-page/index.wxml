@@ -1,0 +1,33 @@
+<!-- components/loading/index.wxml -->
+<view id="loading-box" class="loading-box{{ loadingStart ? ' is-loading' : '' }} {{ loadingType === 'loading' ? '' : loadingType }}" style="background: #fff">
+    <block wx:if="{{ loadingType == 'network-out' }}">
+        <view class="loading-main loading-scene-box loading-scene-mountains ^flex-box ^flex-box-jcc ^flex-box-aic">
+            <view class="loading loading-network-out ^flex-box ^flex-box-jcc ^flex-box-dc">
+                <!-- <view class="wind-box">
+                    <view class="wind search-network"></view>
+                    <view class="wind search-network"></view>
+                    <view class="wind search-network"></view>
+                    <view class="wind"></view>
+                    <view class="wind"></view>
+                    <view class="wind"></view>
+                </view>
+                <view class="loading-text">咦，大风大霾网络好像迷路咯！</view>
+                <view class="linked-network ^border-hairline" bindtap="getLinkedNetwork">
+                    <text class="text">重新连接网络</text>
+                </view> -->
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="loading-main ^flex-box ^flex-box-jcc ^flex-box-aic">
+            <view class="loading ^flex-box ^flex-box-dc ^flex-box-jcc">
+                <view class="loading-media-box"><image class="loading" mode="aspectFit" src="../../static/image/loading.gif" /></view>
+                <view class="loading-text">正在加载{{ loadingTitle ? '(' + loadingTitle + ')' : '' }}数据 ···</view>
+            </view>
+        </view>
+    </block>
+    <view class="loading-copyright">
+        <text class="text">{{ config.copyright.author }}{{ config.copyright.data }}</text>
+        <text class="text nums">{{ config.version }}</text>
+    </view>
+</view>

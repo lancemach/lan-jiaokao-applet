@@ -1,0 +1,39 @@
+/* pages/mine/wechart/index.wxss */
+@import '../../../components/common/style/hairline.wxss';
+.info .header {
+    padding: 40rpx 20rpx 20rpx 20rpx;
+}
+.info .header .right {
+    margin-left: 30rpx;
+}
+.info .header .avatar-box, .info .header .avatar {
+    width: 132rpx;
+    height: 132rpx;
+}
+.info .header .h2 {
+    font-size: 40rpx;
+    margin-top: 8rpx;
+}
+
+.info .header .h3 {
+    font-size: 28rpx;
+    margin: 16rpx 0 22rpx;
+}
+.info .header .update-btn {
+    height: 50rpx;
+    line-height: 50rpx;
+    border-radius: 50rpx;
+    font-size: 26rpx;
+    width: 176rpx;
+    font-weight: normal;
+}
+.info .header .update-btn::after {
+    border-radius: 50rpx;
+    border-color: #c2c2c2;
+}
+
+.list-info .list {
+    border-top: solid #f2f2f2 16rpx;
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
+}

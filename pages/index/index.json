@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "lan-tab": "/components/tab/index",
+    "lan-tabs": "/components/tabs/index"
+  }
+}

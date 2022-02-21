@@ -1,0 +1,34 @@
+/* pages/study/media/list/index.wxss */
+@import '../../../../components/common/style/hairline.wxss';
+.container {
+    background-color: #fff;
+}
+.item {
+    padding: 12px 0;
+}
+.item:first-child::after{
+    border: none;
+}
+.media {
+    position: relative;
+}
+.media .iconfont {
+    position: absolute;
+    z-index: 9;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.media .image {
+    width: 280rpx;
+}
+.right {
+    padding-left: 28rpx;
+}
+.title .h2 {
+    font-size: 34rpx;
+}
+.right .tips {
+    margin-top: 25rpx;
+    font-size: 28rpx;
+}

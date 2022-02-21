@@ -1,0 +1,24 @@
+<!--pages/study/symbol/details/index.wxml-->
+<view class="container van-hairline--top">
+    <block wx:if="{{! empty}}">
+        <view class="symbol flex-box flex-box-jcb">
+            <block wx:for="{{ symbol }}" wx:key="index">
+                <view class="item van-hairline--top white-box" bind:tap="bindGoSymbol">
+                    <view class="media safety-distance-around">
+                        <image
+                            src="{{ item.pic }}"
+                            mode="aspectFit"
+                            style="width: 36vw; height:36vw;"
+                            class="image lmbox-radius"
+                        />
+                        <view class="h2 text-fw6 text-clo1">{{ item.name }}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </block>
+    <block wx:else>
+        <lan-empty description="还没有任何车考信息，哦！" />
+    </block>
+    <lan-loading-page v-if="loadingStart" loading-title="{{ title }}" loading-start="{{ loadingStart }}" />
+</view>

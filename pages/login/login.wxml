@@ -1,0 +1,125 @@
+<!--pages/login/login.wxml-->
+<view class="container flex-box flex-box-jcc white-box">
+    <view wx:if="{{ wechartLogin }}" class="wechart-login white-box flex-box flex-box-jcc">
+        <view class="wechart-login-box">
+            <image class="image lmbox-radius" src="{{ site.logo }}" />
+            <view class="title">
+                <view class="text text-fw6">会学车、会用车</view>
+                <view class="name text-fw6">就在{{ site.name || '车轮宝典' }}</view>
+            </view>
+            <lan-button
+                color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+                round
+                disabled="{{wecharDisabled}}"
+                loading="{{wechartLoading.enable}}"
+                loading-text="{{wechartLoading.text}}"
+                loading-class="loading-btn"
+                custom-class="login-btn wechart-login-btn"
+                bind:tap="bindWeChartLogin"
+            >
+                <view class="flex-box flex-box-jcs flex-box-aic">
+                    <lan-iconfont name="lan-icon-wechat" color="#fff" size="60" /> <view class="login-text">微信一键登录</view>
+                </view>
+            </lan-button>
+        </view>
+    </view>
+    <view class="login-box flex-box flex-box-dc">
+        <view class="login flex-box flex-box-block">
+            <view class="login-info flex-box flex-box-asc">
+                <view class="h2 text-fw7 text-clo3">
+                    <view class="text">你好，</view>
+                    <view class="text">欢迎来到{{ productName }}</view>
+                </view>
+                <view class="login-form">
+                    <view class="login-heade"><text class="text text-clo3 text-fw7">中国(+86)</text><lan-icon color="#b2b2b2" size="12" custom-style="font-weight: 700" name="arrow" /></view>
+                    <view class="login-body">
+                        <form catchsubmit="formSubmit">
+                            <view class="input-box">
+                                <input
+                                    class="lma-input text-fw7 text-clo3"
+                                    type="number"
+                                    maxlength="11"
+                                    placeholder-class="lma-input-pld"
+                                    name="phone"
+                                    data-name="phone"
+                                    data-min="11"
+                                    disabled="{{disabled}}"
+                                    bindblur="checkInput"
+                                    bindinput="testInput"
+                                    placeholder="输入手机号"
+                                />
+                                <!-- <button class="ghost-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
+                                <text wx:if="{{error.phone}}" class="error">手机号码必须是1[3 ~ 9]开头数字</text>
+                            </view>
+                            <view class="input-box">
+                                <input
+                                    class="lma-input text-fw7 text-clo3"
+                                    type="number"
+                                    maxlength="6"
+                                    placeholder-class="lma-input-pld"
+                                    name="code"
+                                    data-name="code"
+                                    data-min="6"
+                                    disabled="{{disabled}}"
+                                    bindinput="testInput"
+                                    placeholder="验证码"
+                                />
+                                <text wx:if="{{error.number}}" class="error">6位短信验证码</text>
+                                <view
+                                    bindtap="bindSendCode"
+                                    class="text-code-btn {{ textStatus }}"
+                                    style="color: {{ phoneCode.status ? config.skin.primaryColors : '#c2c2c2' }}">
+                                    <lan-count-down
+                                        class="control-count-down"
+                                        time="{{ phoneCode.sendCycle || 6000 }}"
+                                        auto-start="{{ false }}"
+                                        format="ss"
+                                        bind:change="onChange"
+                                        use-slot="text"
+                                    >
+                                        <view slot="text">{{ phoneCode.text }}</view>
+                                    </lan-count-down>
+                                    {{ phoneCode.text }}
+                                </view>
+                            </view>
+                            <view class="input-box" style="padding:16rpx 0 80rpx">
+                                <view class="login-privacy-agreement flex-box flex-box-jcs flex-box-aic">
+                                    <lan-checkbox value="{{ checked }}" checked-color="{{config.skin.heightopColors}}" icon-size="26rpx" bind:change="onCheckboxChange">
+                                    登录即同意
+                                    </lan-checkbox>
+                                    <text bindtap="bindGoPages" data-id="{{ 1 }}" style="color:{{config.skin.primaryColors}}">《用户使用协议》</text>和<text bindtap="bindGoPages" data-id="{{ 2 }}" style="color:{{config.skin.primaryColors}}">《隐私政策》</text>
+                                </view>
+                                <block wx:if="{{! isLogin}}">
+                                    <lan-button
+                                        block
+                                        round
+                                        disabled
+                                        custom-class="login-btn login-dis-btn"
+                                    >
+                                        等待登录
+                                    </lan-button>
+                                </block>
+                                <block wx:else>
+                                    <lan-button
+                                        color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+                                        block
+                                        round
+                                        disabled="{{disabled}}"
+                                        loading="{{loading.enable}}"
+                                        loading-text="{{loading.text}}"
+                                        loading-class="loading-btn"
+                                        form-type="submit"
+                                        custom-class="login-btn"
+                                    >
+                                        立即登录
+                                    </lan-button>
+                                </block>
+                            </view>
+                        </form>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="login-copyright"></view>
+    </view>
+</view>

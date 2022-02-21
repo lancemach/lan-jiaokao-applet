@@ -1,0 +1,58 @@
+<!--pages/buys/index.wxml-->
+
+<lan-headbar
+    fixed
+    left-arrow
+    bar-hieght="{{ config.customComponent.navBarHeight }}"
+    class="lan-headbar-fixed"
+    bind:click-left="onclickLeft"
+>
+    <view slot="middle" class="header-middle flex-box flex-box-aic flex-box-jcs">
+        <view class="hd-tabbar mini flex-box flex-box-jcs">
+            <view
+                class="item text-fw7 {{ model === 1 ? 'current' : '' }}"
+                style="{{ model === 1 ? ('color:'+ config.skin.primaryColors) : '' }}"
+                bind:tap="bindModelExam"
+                data-model="{{ 1 }}"
+                data-text="新车"
+            >
+                新车<view class="bar" style="{{ model === 1 ? ('background-color:' + config.skin.primaryColors) : '' }}"></view>
+            </view>
+            <view
+                class="item text-fw7 {{ model === 2 ? 'current' : '' }}"
+                style="{{ model === 2 ? ('color:'+ config.skin.primaryColors) : '' }}"
+                bind:tap="bindModelExam"
+                data-model="{{ 2 }}"
+                data-text="二手车"
+            >
+                二手车<view class="bar" style="{{ model === 2 ? ('background-color:' + config.skin.primaryColors) : '' }}"></view>
+            </view>
+        </view>
+    </view>
+</lan-headbar>
+<view class="container white-box" style="{{ setStyle }}">
+
+    <lan-index-bar
+        index-list="{{ cateIndex }}"
+        sticky-offset-top="{{ nodeTop }}"
+        highlight-color="{{ config.skin.primaryColors }}"
+        highlight-class="highlight"
+        sticky="{{ false }}"
+    >
+    <!-- <view>
+        <lan-index-anchor index="选" />
+        <view>选</view>
+    </view> -->
+    <view wx:for="{{ cateList }}" wx:key="key" wx:for-item="list" class="list">
+        <lan-index-anchor index="{{ list.k }}" />
+        <view class="list-items flex-box flex-box-jcs" wx:for="{{ list.d }}" wx:key="id">
+            <image
+                src="{{ item.note }}"
+                class="image"
+            />
+            <view class="info flex-box flex-box-block flex-box-aic {{ index !== 0 ? 'van-hairline--top' : '' }}"><text>{{item.name}}</text></view>
+        </view>
+    </view>
+
+    </lan-index-bar>
+</view>

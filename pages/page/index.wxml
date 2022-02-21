@@ -1,0 +1,13 @@
+<!--pages/page/index.wxml-->
+<view class="container white-box">
+    <block wx:if="{{! empty}}">
+        <import src="../../components/wxParse/wxParse.wxml"/>
+        <view class="pages safety-distance-around">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        </view>
+    </block>
+    <block wx:else>
+        <lan-empty description="还没有任何信息，哦！" />
+    </block>
+</view>
+

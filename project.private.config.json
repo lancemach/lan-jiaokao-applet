@@ -1,0 +1,144 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/study/exam/exam",
+          "pathName": "pages/study/exam/exam",
+          "query": "subjects=4&random=1&type=C1",
+          "scene": null
+        },
+        {
+          "name": "pages/study/transcript/transcript",
+          "pathName": "pages/study/transcript/transcript",
+          "query": "random=1&subjects=1&type=C1&right=35&wrong=65&scores_value=80&undone=0&usedTime=03:02&&typeName=科目一",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/study/record/record",
+          "pathName": "pages/study/record/record",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/study/record/record",
+          "pathName": "pages/study/record/record",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/study/exam/exam",
+          "pathName": "pages/study/exam/exam",
+          "query": "subjects=4&random=0&type=C1&rule=errors",
+          "scene": null
+        },
+        {
+          "name": "pages/study/category/category",
+          "pathName": "pages/study/category/category",
+          "query": "random=0&type=C1&subjects=1&cate=2",
+          "scene": null
+        },
+        {
+          "name": "pages/study/category/form",
+          "pathName": "pages/study/category/form",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/page/index",
+          "pathName": "pages/page/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/study/media/list/index",
+          "pathName": "pages/study/media/list/index",
+          "query": "subjects=2",
+          "scene": null
+        },
+        {
+          "name": "pages/study/media/details/index",
+          "pathName": "pages/study/media/details/index",
+          "query": "id=3&subjects=2",
+          "scene": null
+        },
+        {
+          "name": "pages/study/symbol/list/index",
+          "pathName": "pages/study/symbol/list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/study/symbol/details/index",
+          "pathName": "pages/study/symbol/details/index",
+          "query": "category_id=20",
+          "scene": null
+        },
+        {
+          "name": "pages/study/paper/index",
+          "pathName": "pages/study/paper/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/study/exam/exam",
+          "pathName": "pages/study/exam/exam",
+          "query": "random=0&type=C1&subjects=1&rule=vip",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/index/index",
+          "pathName": "pages/mine/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/wechart/index",
+          "pathName": "pages/mine/wechart/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/card/index",
+          "pathName": "pages/mine/card/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/character/index",
+          "pathName": "pages/mine/character/index",
+          "query": "id=2",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/vip/index",
+          "pathName": "pages/mine/vip/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/buys/index",
+          "pathName": "pages/buys/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

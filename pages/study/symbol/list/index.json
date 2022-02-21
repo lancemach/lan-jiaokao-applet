@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "图标技巧",
+  "usingComponents": {
+    "lan-empty": "/components/empty/index"
+  }
+}

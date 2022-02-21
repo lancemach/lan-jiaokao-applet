@@ -1,0 +1,39 @@
+<!--pages/study/media/details/index.wxml-->
+<lan-headbar
+  fixed
+  bar-hieght="{{ config.customComponent.navBarHeight }}"
+  ghost-bar
+  left-arrow
+  left-arrow-color="#fff"
+  class="lan-headbar-fixed"
+  bind:click-left="onclickLeft"
+/>
+<view class="container">
+    <view wx:if="{{ options.passed }}" class="video-box" style="border-top: solid {{statusBarHeight}}px #000">
+        <video 
+            id="video"
+            title="{{ drives.name }}"
+            src="{{ drives.media }}" 
+            binderror="videoErrorCallback"
+            show-center-play-btn='{{false}}' 
+            show-play-btn="{{true}}" 
+            controls
+        ></video>
+    </view>
+    <view class="details safety-distance-around">
+        <view class="title flex-box flex-box-jcb flex-box-aie">
+            <view class="h1 text-clo1 text-fw6">{{ drives.name }}</view>
+            <view class="times text-cloA">{{ drives.times }}s</view>
+        </view>
+        <view class="info van-hairline--top">
+            <block wx:if="{{! empty}}">
+                <import src="../../../../components/wxParse/wxParse.wxml"/>
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+                <lan-divider hairline customStyle="color: #c8c8c8; border-color: #eee; font-size: 26rpx;margin:50rpx 0 25rpx" contentPosition="center">{{config.params.dividerText}}</lan-divider>
+            </block>
+            <block wx:else>
+                <lan-empty description="还没有任何信息，哦！" />
+            </block>
+        </view>
+    </view>
+</view>

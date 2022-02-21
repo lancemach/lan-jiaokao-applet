@@ -1,0 +1,421 @@
+<!--pages/study/exam/exam.wxml-->
+<block wx:if="{{ start === 0 && random == 1 }}">
+    <lan-headbar
+        fixed
+        left-arrow
+        left-text="模拟考试"
+        bind:click-left="onclickLeft"
+        class="lan-headbar-fixed"
+    />
+    <view class="container flex-box flex-box-aic white-box" style="{{ setStyle }}">
+        <!-- 模拟考试开始页 -->
+        <view class="start-box flex-box flex-box-block flex-box-aic flex-box-jcc">
+            <view class="info flex-box flex-box-dc flex-box-jcc">
+                <view class="user-info">
+                    <!-- <block wx:if="{{ update === 1 }}"> -->
+                        <view class="avatar" bind:tap="bindUserUpdateInfo">
+                            <image class="image" src="{{ userInfo.avatarUrl }}" />
+                        </view>
+                    <!-- </block> -->
+                    <!-- <block wx:else>
+                        <view class="avatar">
+                            <image class="image" src="{{ userInfo.avatarUrl }}" />
+                        </view>
+                    </block> -->
+                    
+                    <view class="name">{{ userInfo.nickName }}</view>
+                </view>
+                <view class="exam-info">
+                    <view class="list">考试类型 <text class="text">{{ question.exam.title }} {{ question.exam.type }}</text></view>
+                    <view class="list">考试数量 <text class="text">{{ question.list.total }} 道</text></view>
+                    <view class="list">考试时间 <text class="text">{{ question.expires_in / 60 / 1000 }} 分钟</text></view>
+                    <view class="list">合格时间 <text class="text">满分{{ question.exam.full_marks }} 分，及格{{ question.exam.pass_borderline }} 分</text></view>
+                    <view class="list">出题规则 <text class="text">按公安部规定比例随机抽取</text></view>
+                </view>
+                <view class="btn-box">
+                    <view class="tips" wx:if="{{ update === 1 }}">点击头像可更新微信信息</view>
+                    <lan-button
+                        color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+                        block
+                        round
+                        loading="{{loading.enable}}"
+                        loading-text="{{loading.text}}"
+                        loading-class="loading-btn"
+                        custom-style="width: 100%;"
+                        bind:tap="bindStartExam"
+                    >
+                        开始考试
+                    </lan-button>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:else>
+    <block wx:if="{{ random == 1 }}">
+        <lan-headbar
+            fixed
+            left-arrow
+            left-text="模拟考试"
+            bar-hieght="{{ config.customComponent.navBarHeight }}"
+            class="lan-headbar-fixed"
+            bind:click-left="onclickLeft"
+        >
+            <view slot="middle" class="header-middle flex-box flex-box-aic flex-box-jcs">
+                <block wx:if="{{ review == 1 }}">
+                    考题回顾
+                </block>
+                <block wx:else>
+                    <lan-iconfont
+                        name="lan-icon-shijian"
+                        size="36"
+                        color="#666"
+                    />
+                    <lan-count-down
+                        class="control-count-down"
+                        time="{{ question.expires_in }}"
+                        format="mm:ss"
+                        auto-start="{{ false }}"
+                        bind:finish="countFinished"
+                        bind:change="countChange"
+                        use-slot="text"
+                    />
+                    {{ question.timer }}
+                </block>
+                    
+            </view>
+        </lan-headbar>
+    </block>
+    <block wx:else>
+        <block wx:if="{{ question.list.study.length > 0 }}">
+            <lan-headbar
+                fixed
+                left-arrow
+                bar-hieght="{{ config.customComponent.navBarHeight }}"
+                class="lan-headbar-fixed"
+                bind:click-left="onclickLeft"
+            >
+                <view slot="middle" class="header-middle flex-box flex-box-aic flex-box-jcs">
+                    <view class="hd-tabbar flex-box flex-box-jcs">
+                        <view
+                            class="item text-fw7 {{ model === 1 ? 'current' : '' }}"
+                            style="{{ model === 1 ? ('color:'+ config.skin.primaryColors) : '' }}"
+                            bind:tap="bindModelExam"
+                            data-model="{{ 1 }}"
+                            data-text="答题模式"
+                        >
+                            答题模式<view class="bar" style="{{ model === 1 ? ('background-color:' + config.skin.primaryColors) : '' }}"></view>
+                        </view>
+                        <view
+                            class="item text-fw7 {{ model === 2 ? 'current' : '' }}"
+                            style="{{ model === 2 ? ('color:'+ config.skin.primaryColors) : '' }}"
+                            bind:tap="bindModelExam"
+                            data-model="{{ 2 }}"
+                            data-text="学习模式"
+                        >
+                            学习模式<view class="bar" style="{{ model === 2 ? ('background-color:' + config.skin.primaryColors) : '' }}"></view>
+                        </view>
+                    </view>
+                </view>
+            </lan-headbar>
+        </block>
+    </block>
+    <block wx:if="{{ question.list.study.length > 0 }}">
+        <!-- catchtouchmove="catchTouch" -->
+        <view class="container white-box" style="{{ setStyle }}" bind:touchstart="touchStart" bindtouchmove="touchMove" bind:touchend="touchEnd">
+            <view class="duration-touch-view flex-box flex-box-block">
+                <view class="exam-wrap white-box">
+                    <view class="exam-box">
+                        <view class="text-clo1 text-fw6 question">
+                            <lan-tag
+                                color="{{ config.skin.primaryColors }}"
+                                text-color="#fff"
+                                size="28"
+                                style="margin-right:10rpx; position: relative;top:-2rpx"
+                                wx:if="{{problem.typeTitle}}"
+                            >
+                                {{ problem.typeTitle }}
+
+                            </lan-tag>
+                            {{ problem.question }}
+                        </view>
+                        <view
+                            class="images"
+                            wx:if="{{ problem.pic }}"
+                            style="background: url({{ problem.pic }}) no-repeat 50%;background-size: contain;"
+                        >
+                        </view>
+                        <!-- 答题选项 -->
+                        <view class="text-clo1 option">
+                            <block wx:for="{{ problem.options }}" wx:key="index" wx:for-index="index">
+                                <view
+                                    class="options{{ index }} item flex-box flex-box-jcb flex-box-nowrap flex-box-ais"
+                                    data-index="{{ index }}"
+                                    data-key="{{ item.item }}"
+                                    data-answer="{{ problem.answer }}"
+                                    data-id="{{ problem.id }}"
+                                    bind:tap="bindEnterAnswer"
+                                >
+                                    <!-- 学习模式 -->
+                                    <block wx:if="{{ model === 2 }}">
+                                        <lan-iconfont
+                                            wx:if="{{ item.wrong === 0 }}"
+                                            class="bullets {{ item.wrong === 1 || ' selected' }}"
+                                            name="lan-icon-{{ item.wrong === 1 || 'zhengque' }}"
+                                            size="50"
+                                            color="{{ config.skin[item.wrong === 1 || 'primaryColors'] }}"
+                                        />
+                                        <view
+                                            wx:else
+                                            class="bullets text-clo6"
+                                        >{{ item.item }}</view>
+                                        <view
+                                            class="text"
+                                            style="{{ config.skin[item.wrong === 1 || 'primaryColors'] }}"
+                                        >{{ item.text }}</view>
+                                    </block>
+                                    <!-- 答题模式 -->
+                                    <block wx:else>
+                                        <lan-iconfont
+                                            wx:if="{{ item.select === 1 && item.multiples !== 1 }}"
+                                            class="bullets {{ item.select === 1 ? ' selected' : '' }}"
+                                            name="lan-icon-{{ item.wrong !== 1 ? 'zhengque' : 'cuowu' }}"
+                                            size="50"
+                                            color="{{ config.skin[item.wrong !== 1 ? 'primaryColors' : 'errorColors'] }}"
+                                        />
+                                        <view
+                                            wx:else
+                                            class="bullets text-clo6"
+                                            style="{{ item.select === 1 && item.multiples === 1 ? 'color:#fff;background-color:' + config.skin.saturationColors+';border-color:' + config.skin.saturationColors : ''}}"
+                                        >{{ item.item }}</view>
+                                        <view
+                                            class="text"
+                                            style="{{ item.select === 1 && item.multiples !== 1 ? 'color:' + config.skin[item.wrong !== 1 ? 'primaryColors' : 'errorColors'] : item.select === 1 && item.multiples === 1 ? 'color:' + config.skin.saturationColors : '' }}"
+                                        >{{ item.text }}</view>
+                                    </block>
+                                </view>
+                            </block>
+                        </view>
+                        <!-- 多选模式(按钮) -->
+                        <block wx:if="{{ model === 1 && problem.type === 3 && problem.confirmAnswer === 1 && problem.answered !== 1}}">
+                            <lan-button
+                                class="flex-box flex-box-aic"
+                                color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+                                block
+                                round
+                                loading="{{ loading.enable }}"
+                                loading-text="{{ loading.text }}"
+                                custom-class="confirm-answer-btn"
+                                data-multiple="{{ 2 }}"
+                                bind:tap="bindEnterAnswer"
+                            >
+                                交卷
+                            </lan-button>
+                        </block>
+                        <!-- 顺序练习 答案区域-->
+                        <view class="solving-problems" wx:if="{{ model === 2 || problem.answered == 1 }}">
+                            <view class="answer" style="background-color:{{ config.skin.heightopColors }}">
+                                <text class="text text-fw7">答案：{{ problem.answer }}</text>
+                            </view>
+                            <view class="skill item-box">
+                                <view class="title text-fw7 text-clo3"><view class="bar" style="background-color:{{ config.skin.primaryColors }}"></view>本题技巧</view>
+                                <view wx:if="{{ question.vip.ets1 == 1 }}" class="info text-clo3 vip">
+                                    <text class="vip-icon">VIP</text>ertert在题目中有关键词在题目中有关键词在题目中有关键词在题目中有关键词在题目中有关键词在题目中有关键词
+                                </view>
+                                <view wx:else class="info text-clo3">看{{ ! problem.pic ? '文字' : '图文' }}答题, 在题目中有关键词
+                                    <view class="vip-btn flex-box flex-box-jcs flex-box-aic" bind:tap="bindGoVIP">查看答题技巧<lan-iconfont name="lan-icon-arrow-right" class="icon" size="40" color="#625328" /></view>
+                                </view>
+                            </view>
+                            <view class="bar"></view>
+                            <view class="detailed" style="padding-bottom:0">
+                                <view class="main-title text-fw7 text-clo3">试题详解</view>
+                                <view class="item-box"><view class="title text-fw7 text-clo3">
+                                    <view class="bar" style="background-color:{{ config.skin.primaryColors }}"></view>官方解析</view>
+                                    <view class="info text-clo3" style="padding-bottom:0">{{ problem.skills }}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- <lan-copyright /> -->
+        </view>
+        <lan-tabbar
+            custom
+            class="lan-tabbar {{ maxHieghtTabbar ? 'tabbar-unfold' : '' }}"
+            hieght-bar="{{ maxHieghtTabbar || hieghtTabbar }}"
+            bindchange="tabChange"
+        >
+            <view slot="custom" style="width: 100vw">
+                <view class="tabbar-box flex-box flex-box-jcb safety-distance {{ maxHieghtTabbar ? 'van-hairline--bottom' : '' }}">
+                    <view
+                        class="collect flex-box flex-box-jcs flex-box-aic"
+                        bind:tap="bindCollectExam"
+                        data-id="{{ problem.id }}"
+                        data-tid="{{ 2 }}"
+                        data-type="{{ question.exam.type }}"
+                        data-subjects="{{ question.exam.subjects }}"
+                    >
+                        <lan-iconfont
+                        name="lan-icon-shoucang"
+                        size="38"
+                        color="{{ problem.favorite ? config.skin.errorColors : '#a2a2a2' }}"
+                    />
+                    <text class="text {{ problem.favorite ? 'text-cloA' : 'text-clo6' }}">{{ (problem.favorite || 0) ? '已收藏' : '收藏' }}</text>
+                    </view>
+                    <view class="console flex-box flex-box-jcs flex-box-aic">
+                        <block wx:if="{{ rule !== 'undone' }}">
+                            <view class="item flex-box flex-box-jcs flex-box-aic" wx:if="{{ review != 1 }}">
+                                <lan-iconfont name="lan-icon-zhengque" size="32" color="{{ config.skin.primaryColors }}" />
+                                <text class="text" style="color:{{ config.skin.primaryColors }}">{{ answered.right || question.exam.right || 0 }}</text>
+                            </view>
+                            <view class="item flex-box flex-box-jcs flex-box-aic">
+                                <lan-iconfont name="lan-icon-cuowu" size="32" color="{{ config.skin.errorColors }}" />
+                                <text class="text "style="color:{{ config.skin.errorColors }}">{{ answered.wrong || question.exam.wrong || 0 }}</text>
+                            </view>
+                        </block>
+                        <view class="item library flex-box flex-box-jcs flex-box-aic" bind:tap="bindUnfoldExam">
+                            <lan-iconfont name="lan-icon-wenben" size="34" color="#808080" class="library-icon" />
+                            <block wx:if="{{ rule !== 'undone' }}"><text class="text text-clo">{{ problem.index + 1 || 0 }}</text>/</block>
+                            <text class="text6">{{ question.list.folder_list.length || question.list.total || 0 }}</text>
+                        </view>
+                    </view>
+                    <lan-button
+                        wx:if="{{ random == 1 && review != 1 }}"
+                        class="flex-box flex-box-aic"
+                        color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+                        block
+                        round
+                        size="small"
+                        loading="{{ loading.enable }}"
+                        loading-text="{{ loading.text }}"
+                        custom-class="bar-btn"
+                        bind:tap="bindActionExam"
+                    >
+                        交卷
+                    </lan-button>
+                </view>
+                <view class="sequence-box safety-distance-around" wx:if="{{ maxHieghtTabbar }}">
+                    <view class="sequence flex-box flex-box-jcs">
+                        <view
+                            bindtap="setProblemData"
+                            data-index="{{ index }}"
+                            data-id="{{ item.id || 0 }}"
+                            data-select="{{ 1 }}"
+                            class="item {{ index > 1000 ? 'min' : '' }}"
+                            style="{{ item.style || answered.style[item.id] }}"
+                            wx:for="{{  question.exam.random == 1  ? (question.list.study || question.list.total || 0) : (question.list.folder_list || question.list.total || 0) }}" wx:key="index"
+                        >{{ index + 1 }}</view>
+                    </view>
+                    
+                    <!-- <view class="chapter text-clo6 safety-distance-around">{{ problem.chapter || '附加章节经典答题' }}</view> -->
+                </view>
+            </view>
+        </lan-tabbar>
+    </block>
+    <block wx:else>
+        <lan-headbar
+            fixed
+            left-arrow
+            left-text=""
+            bind:click-left="onclickLeft"
+            class="lan-headbar-fixed"
+        />
+        <view class="flex-box flex-box-jcc flex-box-aic" style="height: 80vh;">
+            <lan-empty image="search" description="你还没有任何习题，哦！" />
+        </view>
+    </block>
+    <lan-popup
+        show="{{ popShow }}"
+        custom-class="popup-box flex-box flex-box-jcc flex-box-dc"
+        bind:close="onPopClose"
+    >
+        <view class="title text-fw7 text-clo3" style="{{ start === 2 ? 'color:' + config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) ? 'primaryColors' : 'errorColors'] + ';' : '' }}">
+            {{ start === 2 ? ('本次答卷成绩' + (question.exam.pass_borderline <= (question.exam.scores_value || 0) ? '' : '不') + '合格') : '您将放弃本次答卷' }}
+        </view>
+        <view class="circle-box" style="height:128px;margin: 0 auto;">
+            <lan-circle
+                wx:if="{{popShow}}"
+                stroke-width="8"
+                duration="{{ 50 }}"
+                size="{{ 128 }}"
+                layer-color="{{ (start === 2 ? '#f2f2f2' : config.skin.lowColors) || '#fff' }}"
+                color="{{ (start === 2 ? config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) ? 'primaryColors' : 'errorColors'] : config.skin.primaryColors) || '#fff'  }}"
+                value="{{ (question.exam.right + question.exam.wrong ) * 100 / question.list.total }}"
+                custom-class="{{ popShow ? '' : 'hide' }}}"
+            >
+                <view class="text-clo6">当前进度</view>
+                <view style="color:{{ start === 2 ? config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) ? 'primaryColors' : 'errorColors'] : config.skin.primaryColors }};margin-top:10rpx">
+                    <text class="text" style="margin-right:6rpx">{{ (question.exam.right || 0) + (question.exam.wrong || 0) }}</text>/{{ question.exam.full_marks }}题
+                </view>
+            </lan-circle>
+        </view>
+            
+        <view class="tips" style="color:{{ start === 2 ? '#a2a2a2' : config.skin.errorColors }};text-align: center;margin-top: 20rpx">
+            
+            {{ start === 2 ? '当前总用时 ' + question.usedTime : '您还有'+ (question.exam.undone || question.exam.full_marks) +'道题未作' }}
+        </view>
+        <view class="pop-btn-box flex-box flex-box-jcb">
+            <block wx:if="{{ ((question.exam.right || 0) + (question.exam.wrong || 0)) === question.exam.full_marks && random == 1 }}">
+                <lan-button
+                    class="flex-box flex-box-aic"
+                    color="linear-gradient(to right, {{config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) || start !== 2 ? 'heightopColors' : 'errorColors']}}, {{config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) || start !== 2 ? 'primaryColors' : 'errorColors']}})"
+                    block
+                    round
+                    size="small"
+                    custom-class="pop-btn max-btn"
+                    style="margin: 0 auto;"
+                    bind:tap="bindSubmitExam"
+                >
+                    提交考卷
+                </lan-button>
+            </block>
+            <block wx:else>
+                <lan-button
+                    class="flex-box flex-box-aic"
+                    color="linear-gradient(to right, {{config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) || start !== 2 ? 'heightopColors' : 'errorColors']}}, {{config.skin[question.exam.pass_borderline <= (question.exam.scores_value || 0) || start !== 2 ? 'primaryColors' : 'errorColors']}})"
+                    block
+                    round
+                    size="small"
+                    custom-class="pop-btn"
+                    bind:tap="bindClosedExam"
+                >
+                    继续答题
+                </lan-button>
+                <block wx:if="{{ start === 2 }}">
+                    <lan-button
+                        class="flex-box flex-box-aic"
+                        block
+                        plain
+                        round
+                        size="small"
+                        custom-class="pop-btn gray"
+                        bind:tap="bindSubmitExam"
+                    >
+                        提交考卷
+                    </lan-button>
+                </block>
+                <block wx:else>
+                    <lan-button
+                        class="flex-box flex-box-aic"
+                        block
+                        plain
+                        round
+                        size="small"
+                        custom-class="pop-btn gray"
+                        bind:tap="bindExitExam"
+                    >
+                        放弃退出
+                    </lan-button>
+                </block>
+            </block>
+        </view>
+    </lan-popup>
+</block>
+<lan-loading-page
+    v-if="loadingStart"
+    loading-title="{{ title }}"
+    loading-type="{{ loadingType }}"
+    loading-start="{{ loadingStart }}"
+    bind:getLoadingDataCom="bindLoadingDataCom"
+/>

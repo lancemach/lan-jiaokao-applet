@@ -1,0 +1,374 @@
+/* pages/mine/index/index.wxss */
+@import '../../../components/common/style/hairline.wxss';
+.container {
+    overflow: hidden;
+}
+.card {
+    position: relative;
+    margin:  0 auto;
+    border-radius: 18rpx 18rpx 0 0;
+    height: 220rpx;
+    width: 92vw;
+    overflow: hidden;
+}
+.pentagon-big, .pentagon-min, .trilateral {
+    position: absolute;
+}
+.card-box {
+    position: relative;
+    z-index: 1;
+    top: calc( 0 - var(--navbar-safe-area-height) - env(safe-area-inset-top));
+    left: -40vw;
+    background-color: #fff;
+    width: 180vw;
+    height: calc( var(--navbar-safe-area-height) + env(safe-area-inset-top) + 210rpx);
+    border-radius: 0 0 50% 50%;
+    box-shadow: inset 0 -3px 20rpx rgba(0, 0, 0, .01);
+    padding: calc( var(--navbar-safe-area-height) + env(safe-area-inset-top)) 40vw 0 40vw;
+    box-sizing: border-box;
+    background-color: #191E38;
+    background: linear-gradient(105deg, #2BC243 0, #27AE3C 40%);
+    overflow: hidden;
+}
+
+.card-box.is-vip {
+    height: calc( var(--navbar-safe-area-height) + env(safe-area-inset-top) + 566rpx);
+}
+.card-box::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    right: 15vw;
+    z-index: 0;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .08);
+}
+.card-box::after {
+    content: '';
+    position: absolute;
+    top: -15vw;
+    left: 35vw;
+    z-index: -1;
+    width: 45vw;
+    height: 45vw;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .15);
+}
+.pentagon-big, .pentagon-min {
+    opacity: .32;
+}
+.trilateral {
+    width: 100%;
+    height: 26rpx;
+    right: 0;
+    top: -24rpx;
+}
+.trilateral.opacity {
+    height: 38rpx;
+    top: -38rpx;
+    opacity: .35;
+}
+.pentagon-big {
+    width: 148rpx;
+    height: 136rpx;
+    top: 38%;
+    right: 26%;
+}
+.pentagon-min {
+    width: 86rpx;
+    height: 74rpx;
+    top: 16%;
+    right: 40%;
+}
+.avatar-box {
+    background-color: rgba(255, 255, 255, .3);
+}
+.user-box {
+    padding: 12rpx 30rpx;
+}
+.user-box .user {
+    padding: 0 28rpx;
+    position: relative;
+}
+.user-box .user .avatar {
+    border-radius: 50%;
+    width: 136rpx;
+    height: 136rpx;
+    overflow: hidden;
+}
+.user-box .user .info {
+    margin-left: 36rpx;
+    color: #fff;
+}
+.user-box .user .info .h2 {
+    font-size: 42rpx;
+    margin: 6rpx 0 10rpx;
+}
+.user-box .user .info .h2 .long {
+    font-size: 36rpx;
+}
+.user-box .user .info .h2 .longer {
+    font-size: 32rpx;
+}
+.user-box .user .info .h3 {
+    font-size: 26rpx;
+    color: rgba(255, 255, 255, .9);
+    /* padding: 4rpx 16rpx;
+    background-color: rgba(255, 255, 255, .15); */
+}
+.user-box .identity {
+    position: absolute;
+    z-index: 19;
+    right: -30rpx;
+    top: 50%;
+    padding: 0 22rpx 0 26rpx;
+    font-size: 26rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    border-radius: 60rpx 0 0 60rpx;
+    color: #fff;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, .1);
+}
+.user-box .identity .text {
+    margin-left: 16rpx;
+}
+.user-card {
+    padding: 38rpx 0 0;
+}
+/* .user-card:not(.is-vip) .card::before {
+    content: '';
+    position: absolute;
+    z-index: 11;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 60%);
+    top: 40%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    bottom: 30rpx;
+} */
+.user-card .card {
+    position: relative;
+    background-color: #fff;
+    background: linear-gradient(135deg, #EDCE47 0, #FEC600 60%);
+    height: 400rpx;
+}
+.user-card .card.super {
+    background: linear-gradient(105deg, #4C4E5B 0, #31343D 100%);
+}
+.user-card .card .vip-icon {
+    position: absolute;
+    right: -50rpx;
+    top: -85rpx;
+    opacity: .06;
+}
+.user-card .card::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -25%;
+    left: -30%;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    /* transform: translateX(-50%); */
+    background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    overflow: hidden;
+}
+.user-card .card.super::after {
+    background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
+}
+.card-vip-color {
+    color: #896337;
+}
+.user-card .card.super .text.card-vip-color {
+    color: #A17D54;
+}
+.card-info {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    top: 24rpx;
+    padding: 0 36rpx;
+    bottom: 24rpx;
+    box-sizing: border-box;
+}
+.card-info .h2 {
+    font-size: 32rpx;
+    margin-bottom: 12rpx;
+}
+.card-info .h3 {
+    font-size: 32rpx;
+    text-align: center;
+    color: #664929;
+    /* margin-left: 54rpx; */
+}
+.user-card .card.super .card-info .h3, .user-card .card.super .card-vip-color  {
+    color: #E1A35A;
+}
+.card-info .h3 .text {
+    font-size: 42rpx;
+    margin: 0 4rpx;
+}
+
+.vip-item .item {
+    margin-top: 30rpx;
+}
+.vip-item .item .text {
+    margin-top: 8rpx;
+    font-size: 26rpx;
+    text-align: center;
+}
+.vip-item .item .iconfont {
+    display: block;
+    margin: 0 auto;
+    width: 70rpx;
+    height: 70rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: solid 1px #896337;
+}
+.card.super .vip-item .item .iconfont {
+    border-color: #A17D54;
+}
+.open-vip-btn {
+    margin: 25rpx auto;
+    width: 200rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    border-radius: 52rpx;
+    font-size: 24rpx;
+    text-align: center;
+    color: #fff;
+    background-color: #896337;
+    background: linear-gradient(135deg, #B18047 0, #896337 100%);
+}
+.card.super .open-vip-btn {
+    color: #33363F;
+    background-color: #B18047;
+    background: linear-gradient(135deg, #CC9658 0, #E1A35A 100%);    
+}
+.questions {
+    position: relative;
+}
+.questions::before {
+    content: '';
+    position: absolute;
+    top: -12vw;
+    height: 12vw;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+}
+.quest-data {
+    padding-bottom: 12rpx;
+}
+.quest-data .tabbar {
+    font-size: 34rpx;
+    margin-left: -16rpx;
+}
+.quest-data .tabbar .item {
+    width: 100rpx;
+    position: relative;
+    padding-bottom: 10rpx;
+    text-align: center;
+}
+.quest-data .tabbar .item .dots {
+    position: absolute;
+    bottom: -12rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22rpx;
+    height: 7rpx;
+    border-radius: 7rpx;
+    overflow: hidden;
+}
+.quest-data .tabbar .item:not(.checked) .dots {
+    background-color: transparent !important;
+    height: 0;
+}
+.quest-type .text {
+    margin-right: 6rpx;
+}
+.quest-analysis {
+    margin-top: 40rpx;
+}
+.quest-analysis .item {
+    text-align: center;
+    font-size: 26rpx;
+}
+.quest-analysis .item .num {
+    font-size: 50rpx;
+}
+.quest-analysis .item .tit {
+    margin: 10rpx 0 26rpx;
+    font-size: 30rpx;
+}
+.quest-analysis .item .text {
+    margin: 0 10rpx;
+}
+.quest-analysis .item.lan-box-c4 {
+    width: 28%;
+}
+.quest-analysis .item.lan-box-c2 {
+    width: 44%;
+}
+.quest-analysis .item.lan-box-c2 .stat {
+    font-size: 22rpx;
+    position: relative;
+    top: -4rpx;
+}
+.quest-analysis .chart-box, .chart-box .lan-f2-image {
+    position: relative;
+    width: 100%;
+    height: 130rpx;
+}
+.chart-box .lan-f2-image {
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    top: 0;
+}
+.quest-analysis .chart-box .f2-chart {
+    position: relative;
+    z-index: 9;
+    right: -10rpx;
+}
+.cards {
+    border-top: solid 14rpx #F4F4F4;
+}
+.cards .menu .item {
+    text-align: center;
+    margin-top: 18rpx;
+}
+.cards .menu .item .icon {
+    width: 90rpx;
+    height: 90rpx;
+}
+.cards .menu .item .text {
+    font-size: 28rpx;
+    margin-bottom: 18rpx;
+}
+.copyright {
+    padding: 40rpx 0 128rpx;
+}
+.copyright .h3 {
+    font-size: 34rpx;
+    padding-top: 12rpx;
+}
+.copyright .h3, .copyright .h4, .copyright .h6 {
+    text-align: center;
+}
+.copyright .h4 {
+    font-size: 28rpx;
+    margin: 30rpx 0 14rpx;
+}
+.copyright .h6 {
+    font-size: 28rpx;
+    margin-bottom: 44rpx;
+    color: #a2a2a2;
+}

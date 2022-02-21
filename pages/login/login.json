@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "lan-count-down": "/components/count-down/index",
+    "lan-checkbox": "/components/checkbox/index",
+    "lan-checkbox-group": "/components/checkbox-group/index"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "用户登录"
+}

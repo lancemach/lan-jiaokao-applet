@@ -1,0 +1,12 @@
+/* pages/study/symbol/details/index.wxss */
+@import '../../../../components/common/style/hairline.wxss';
+.item {
+    width: 49.99999vw;
+}
+.media {
+    text-align: center;    
+}
+.item .h2 {
+    margin: 24rpx 0 30rpx;
+
+}

@@ -1,0 +1,249 @@
+<!--pages/mine/index/index.wxml-->
+<view class="container">
+  <view class="card-box {{ isVip ? 'is-vip' : '' }}" style="{{ setStyle }}"><!-- is-vip-->
+    <image class="pentagon pentagon-big" src="../../../static/image/pentagon-big.svg" />
+    <image class="pentagon pentagon-min" src="../../../static/image/pentagon-min.svg" />
+    <view class="user-box">
+      <view class="user flex-box flex-box-jcs flex-box-nowrap">
+        <view class="avatar avatar-box" bindtap="bindGeToWechart">
+          <image
+              src="{{ userInfo.avatarUrl }}"
+              mode="aspectFill"
+              class="avatar"
+          />
+        </view>
+        <view class="info" bindtap="bindGeToWechart">
+          <view class="h2 flex-box flex-box-jcs flex-box-aic"><text class="text-fw7 {{ userInfo.nickNameText }}">{{ userInfo.name || userInfo.nickName }}</text><lan-iconfont wx:if="{{ vip }}" name="lan-icon-vip1" size="44" color="#fff" style="margin-left:10rpx" /></view>
+          <view class="h3">欢迎来到{{ site.name }}</view>
+        </view>
+        <view class="identity flex-box flex-box-jcs flex-box-aic" bindtap="bindGeToPages" data-id="2" data-page="character">
+          <lan-icon name="exchange" size="16" />
+          <view class="text">我是{{ charName || '学员' }}</view>
+        </view>
+      </view>
+      <view class="user-card" wx:if="{{ isVip }}">
+        <view class="card {{ character != 1 ? 'super' : '' }}">
+          <block wx:if="{{character == 1}}">
+            <lan-iconfont name="lan-icon-vip1" size="320" color="#896337" class="vip-icon" />
+            <view class="card-info">
+              <view class="h2 flex-box flex-box-jcs flex-box-aic text-fw7 card-vip-color">
+                  <lan-iconfont name="lan-icon-vip2" size="38" color="#896337" style="margin-right:12rpx; position: relative;top:2rpx" />尊敬的VIP会员
+              </view>
+              <view class="h3 card-vip-color text-fw7">密卷<text class="text">易</text>次过，最高补<text class="text">百</text>元</view>
+              <view class="vip-item flex-box flex-box-jcs lan-box-col">
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-zhishidian" class="iconfont" size="60" color="#896337" />
+                  <view class="text card-vip-color">密卷500题</view>
+                </view>
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-tishi" class="iconfont" size="60" color="#896337" />
+                  <view class="text card-vip-color">答题技巧</view>
+                </view>
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-yue" class="iconfont" size="60" color="#896337" />
+                  <view class="text card-vip-color">落榜补偿</view>
+                </view>
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-feiji" class="iconfont" size="60" color="#896337" />
+                  <view class="text card-vip-color">双飞旅游</view>
+                </view>
+              </view>
+              <block wx:if="{{ site.passed }}">
+                <view wx:if="{{ ! vip }}" class="open-vip-btn" bindtap="bindGeToPages" data-id="{{ 1 }}" data-page="vip">{{ userInfo.vip['ets' + (character > 1 ? '2' : '1')] == 1 ? '我的特权' : '立即开通' }}</view>
+              </block>
+            </view>
+          </block>
+          <block wx:else>
+            <lan-iconfont name="lan-icon-vip1" size="320" color="#AF7A2A" class="vip-icon" />
+            <view class="card-info">
+              <view class="h2 flex-box flex-box-jcs flex-box-aic text-fw7 card-vip-color">
+                  <lan-iconfont name="lan-icon-vip2" size="38" color="#E1A35A" style="margin-right:12rpx; position: relative;top:2rpx" />尊敬的VIP会员
+              </view>
+              <view class="h3 card-vip-color text-fw7">洗车<text class="text">全</text>免费，维修<text class="text">低</text>八折</view>
+              <view class="vip-item flex-box flex-box-jcs lan-box-col">
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-xichefuwu" class="iconfont" size="60" color="#A17D54" />
+                  <view class="text card-vip-color">免费洗车</view>
+                </view>
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-jiayoufuwu" class="iconfont" size="60" color="#A17D54" />
+                  <view class="text card-vip-color">九折加油</view>
+                </view>
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-xiuchefuwu" class="iconfont" size="60" color="#A17D54" />
+                  <view class="text card-vip-color">八折维修</view>
+                </view>
+                <view class="item lan-box-c4">
+                  <lan-iconfont name="lan-icon-lipin" class="iconfont" size="60" color="#A17D54" />
+                  <view class="text card-vip-color">车主礼包</view>
+                </view>
+              </view>
+              <block wx:if="{{ site.passed }}">
+                <view wx:if="{{ ! vip }}" class="open-vip-btn" bindtap="bindGeToPages" data-id="{{ 2 }}" data-page="vip">{{ userInfo.vip['ets' + character] == 1 ? '查看特权' : '立即开通' }}</view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ isVip }}" class="questions white-box">
+      <block  wx:if="{{ character == 1 }}">
+          <view class="quest-box safety-distance-around">
+          <view class="quest-data flex-box flex-box-jcb van-hairline--bottom">
+              <view class="tabbar flex-box flex-box-jcs">
+                <view bindtap="changeSubject" data-subjects="{{ 1 }}" class="item {{ subjects === 1 ? 'checked text-clo1 text-fw7' : '' }}">
+                  科一<view class="dots" style="background-color:{{ config.skin.primaryColors }}"></view>
+                </view>
+                <view bindtap="changeSubject" data-subjects="{{ 4 }}" class="item {{ subjects === 4 ? 'checked text-clo1 text-fw7' : '' }}">
+                  科四<view class="dots" style="background-color:{{ config.skin.primaryColors }}"></view>
+                </view>
+              </view>
+            <view class="quest-type flex-box flex-box-aic text-clo1"  bindtap="bindGeToQuestionBank">切换题库：<text class="text text-fw7" style="color:{{ config.skin.primaryColors }}">{{ study.cate.name }}</text><lan-icon name="arrow" color="#d2d2d2" /></view>
+          </view>
+          <view class="quest-analysis flex-box flex-box-jcs">
+            <view class="item lan-box-c4">
+              <view class="num text-clo1 text-fw7">{{ study.answered || 0 }}</view>
+              <view class="tit text-clo6">累计答题</view>
+              <view class="stat text-clo6">正确<text class="text" style="color:{{ config.skin.primaryColors }}">{{ study.right || 0 }}%</text></view>
+            </view>
+            <view class="item lan-box-c4">
+              <view class="num text-clo1 text-fw7">{{ study.score || 0 }}</view>
+              <view class="tit text-clo6">模考平均分</view>
+              <view class="stat text-clo6">考试<text class="text" style="color:{{ config.skin.primaryColors }}">{{ study.time || 0 }}</text>次</view>
+            </view>
+            <view class="item lan-box-c2 flex-box flex-box-jcc">
+              <view class="chart-box">
+                <lan-f2 class="f2-chart" id="f2-chart" canvas-id="f2-chart" image="{{ popupShow }}" opts="{{ opts }}"></lan-f2>
+              </view>
+              <view class="stat text-cloA flex-box flex-box-ase">成绩面积图</view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+          <view class="quest-box safety-distance-around">
+          <view class="quest-data flex-box flex-box-jcb van-hairline--bottom">
+              <view class="tabbar flex-box flex-box-jcs">
+                <view class="item checked text-clo1 text-fw7" style="width:200rpx">
+                  洗车加油<view class="dots" style="background-color:{{ config.skin.primaryColors }}"></view>
+                </view>
+              </view>
+          </view>
+          <view class="quest-analysis flex-box flex-box-jcs">
+            <view class="item lan-box-c4">
+              <view class="num text-clo1 text-fw7">{{ study.answered || 0 }}</view>
+              <view class="tit text-clo6">免费洗车</view>
+              <view class="stat text-clo6">节省<text class="text" style="color:{{ config.skin.primaryColors }}">{{ study.right || 0 }}</text></view>
+            </view>
+            <view class="item lan-box-c4">
+              <view class="num text-clo1 text-fw7">{{ study.score || 0 }}</view>
+              <view class="tit text-clo6">加油保养</view>
+              <view class="stat text-clo6">节省<text class="text" style="color:{{ config.skin.primaryColors }}">{{ study.time || 0 }}</text></view>
+            </view>
+            <view class="item lan-box-c2 flex-box flex-box-jcc">
+              <view class="chart-box">
+                <lan-f2 class="f2-chart" id="f2-chart" canvas-id="f2-chart" image="{{ popupShow }}" opts="{{ opts }}"></lan-f2>
+              </view>
+              <view class="stat text-cloA flex-box flex-box-ase">优惠面积图</view>
+            </view>
+          </view>
+        </view>
+      </block>
+  </view>
+  <view class="favorite cards white-box safety-distance-around">
+    <view class="menu flex-box flex-box-jcs">
+      <view class="item lan-box-c4">
+        <image
+            src="../../../static/image/nmeu-order.jpg"
+            mode="aspectFill"
+            class="icon"
+        />
+        <view class="text text-clo3">我的订单</view>
+      </view>
+      <view class="item lan-box-c4">
+        <image
+            src="../../../static/image/menu-appointment.jpg"
+            mode="aspectFill"
+            class="icon"
+        />
+        <view class="text text-clo3">我的预约</view>
+      </view>
+      <view class="item lan-box-c4">
+        <image
+            src="../../../static/image/menu-collect.jpg"
+            mode="aspectFill"
+            class="icon"
+        />
+        <view class="text text-clo3">我的收藏</view>
+      </view>
+      <!-- <view class="item lan-box-c4" bindtap="bindGeToPages" data-page="vip">
+        <image
+            src="../../../static/image/menu-bag.jpg"
+            mode="aspectFill"
+            class="icon"
+        />
+        <view class="text text-clo3">我的卡包</view>
+      </view> -->
+      <view class="item lan-box-c4" bindtap="bindGeToPages" data-page="record">
+        <image
+            src="../../../static/image/menu-cup.jpg"
+            mode="aspectFill"
+            class="icon"
+        />
+        <view class="text text-clo3">我的成绩</view>
+      </view>
+      <button open-type="contact" class="item lan-box-c4" style="margin:0;background:none; width: auto;">
+        <image
+            src="../../../static/image/menu-service.jpg"
+            mode="aspectFill"
+            class="icon"
+        />
+        <view class="text text-clo3">我的客服</view>
+      </button>
+    </view>
+  </view>
+  <view class="list-info safety-distance-around cards white-box">
+    <view class="info list">
+      <view class="item flex-box flex-box-jcb flex-box-aic" bindtap="bindGeToPages" data-id="12" data-page="pages">
+          <view class="left title text-fw6 text-clo1">关于{{ site.name }}</view>
+          <view class="right text"><lan-iconfont name="lan-icon-arrow-right" class="iconfont" size="40" color="#c2c2c2" /></view>
+      </view>
+      <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" bindtap="bindGeToPages" data-id="2" data-page="pages">
+          <view class="left title text-fw6 text-clo1">隐私协议</view>
+          <view class="right text"><lan-iconfont name="lan-icon-arrow-right" class="iconfont" size="40" color="#c2c2c2" /></view>
+      </view>
+      <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" bindtap="bindGeToPages" data-id="3" data-page="pages">
+          <view class="left title text-fw6 text-clo1">会员服务</view>
+          <view class="right text"><lan-iconfont name="lan-icon-arrow-right" class="iconfont" size="40" color="#c2c2c2" /></view>
+      </view>
+      <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" bindtap="bindGeToPages" data-page="lancema">
+          <view class="left title text-fw6 text-clo1">技术支持</view>
+          <view class="right text flex-box flex-box-jcs">蓝思同学 <lan-iconfont name="lan-icon-arrow-right" class="iconfont" size="40" color="#c2c2c2" /></view>
+      </view>
+    </view>
+  </view>
+  <view class="copyright">
+    <view class="h3 text-fw7 text-clo1">学车、买车、用车就上{{ site.name }}</view>
+    <view class="h4 text-fw7 text-clo6">服务专线 {{ settings.phone }}</view>
+    <view class="h6">{{ settings.icp }}</view>
+    <lan-divider hairline customStyle="color: #c8c8c8; border-color: #eee; font-size: 26rpx;margin:0;" contentPosition="center">{{config.params.dividerText}}</lan-divider>
+  </view>
+  <lan-headbar
+    fixed
+    bar-hieght="{{ config.customComponent.navBarHeight }}"
+    ghost-bar
+    left-arrow
+    left-arrow-color="#fff"
+    class="lan-headbar-fixed"
+    bind:click-left="onclickLeft"
+  />
+  <lan-tabbar
+    wx:if="{{ tabbar && isTabBar }}"
+    class="lan-tabbar"
+    list="{{ tabbar }}"
+    name="{{ name }}"
+    hieght-bar="{{ config.customComponent.tabBarHeight }}"
+    bindchange="tabChange"
+  />
+</view>

@@ -1,0 +1,18 @@
+<!--pages/study/category/category.wxml-->
+<view class="container">
+    <view class="list-box">
+        <view class="box white-box safety-distance-around">
+            <view class="title text-clo3 flex-box flex-box-jcs flex-box-aic"><lan-iconfont class="icon" name="lan-icon-zaixiankaoshi" size="30" />章节分类</view>
+            <view class="item-box">
+                <view class="item flex-box flex-box-jcb flex-box-aic van-hairline--top" wx:for="{{ chapter }}" wx:key="index" bind:tap="bindToExamination" data-chapter="{{ item.title || '_' }}">
+                    <view class="left flex-box flex-box-jcs flex-box-aic">
+                        <view class="num color{{ (index + 1) >= 6 ? (1 % (index + 1)) : ((index + 1) % 6)}}">{{ index + 1 }}</view>
+                        <view class="title text-clo3">{{ item.title || '其它' }}</view>
+                    </view>
+                    <view class="sum">{{ item.sum }} 题</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<lan-loading-page v-if="loadingStart" loading-title="{{ title }}" loading-start="{{ loadingStart }}" />

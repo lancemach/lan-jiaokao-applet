@@ -1,0 +1,35 @@
+/* pages/buys/index.wxss */
+@import '../../components/common/style/hairline.wxss';
+.van-index-bar .van-index-bar__sidebar .van-index-bar__index {
+  /* padding: 4rpx; */
+  box-sizing: border-box; 
+  margin-right: 8px;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  padding: 0;
+  overflow: hidden;
+}
+.van-index-bar .van-index-anchor {
+  background-color: #f4f4f4;
+
+}
+.van-index-bar:first-child .van-index-anchor-wrapper .van-index-anchor  {
+  padding-top: 25rpx
+}
+.van-index-bar .van-index-anchor-wrapper .van-index-anchor text {
+  font-size: 34rpx;
+}
+.van-index-bar .list-items {
+  padding: 10rpx 30rpx 10rpx 40rpx
+}
+.van-index-bar .list-items .image {
+  width: 86rpx;
+  height: 86rpx;
+  margin-right: 40rpx;
+}
+.van-index-bar .list-items .info {
+  paddin-left: 20rpx;
+}

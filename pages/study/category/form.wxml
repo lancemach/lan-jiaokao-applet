@@ -1,0 +1,88 @@
+<!--pages/study/category/form.wxml-->
+<view class="bg" style="background:linear-gradient(120deg, {{ config.skin.primaryColors }}, {{ config.skin.heightopColors }});">
+  <image class="pentagon pentagon-big" src="../../../static/image/pentagon-big.svg" />
+  <image class="pentagon pentagon-min" src="../../../static/image/pentagon-min.svg" />
+</view>
+<view class="container">
+  <lan-headbar
+    ghost-bar
+    bar-hieght="{{ config.customComponent.navBarHeight }}"
+  >
+    <view slot="left" class="header-left flex-box flex-box-aic flex-box-jcs safety-distance">
+      <view class="title text-fw7">请选择驾考信息</view>
+    </view>
+</lan-headbar>
+  <view class="tips flex-box flex-box-jcs safety-distance"><lan-icon size="26rpx" name="passed" /><text class="text">已更新至今日最新题库</text></view>
+  <view class="lan-cell-group white-box">
+    <image class="pentagon trilateral" src="../../../static/image/trilateral.png" />
+    <image class="pentagon trilateral opacity" src="../../../static/image/trilateral.png" />
+    <lan-cell-group custom-class="lan-cell-group">
+      <lan-cell custom-class="lan-cell" title="城市区域" bind:tap="bindCheckedCities" is-link value="西安" />
+      <lan-cell custom-class="lan-cell" title="性别类型" label="{{ sex }}">
+          <lan-switch
+              size="40rpx"
+              active-color="{{ config.skin.primaryColors }}"
+              inactive-color="{{ config.skin.graynessColors }}"
+              checked="{{ swChecked }}"
+              bind:change="onSwitchChange"
+          />
+      </lan-cell>
+      <lan-cell custom-class="lan-cell" border="{{ false }}" title="驾驶证件" is-link value="{{ drivingName }}" />
+      <view class="driving-licence safety-distance lan-box-col flex-box flex-box-jcs">
+        <view
+          class="lan-box-c4"
+          style="{{ drivingChecked === item.id ? ('color:'+ config.skin.saturationColors +';background:' + config.skin.lowColors) : '#e2e2e2' }}"
+          wx:for="{{ category }}"
+          wx:key="index"
+        >
+          <view class="box"
+            data-id="{{ item.id }}"
+            data-name="{{ item.name }}"
+            data-note="{{ item.note }}"
+            bind:tap="bindCheckedDriving"
+          >
+            <lan-icon
+              class="checked flex-box flex-box-jcc flex-box-aic"
+              style="background:{{ config.skin.primaryColors }}"
+              name="success"
+              color="#fff"
+              size="24rpx"
+              wx:if="{{ drivingChecked === item.id }}"
+            />
+            <lan-iconfont
+              size="88"
+              style="opacity: .85;"
+              name="lan-icon-{{ drivingLicence[item.name] }}"
+              color="{{ drivingChecked === item.id ? config.skin.primaryColors : '#e2e2e2' }}" class="flex-box flex-box-jcc"
+            />
+            <view class="name">{{ item.name }}</view>
+            <view class="text">{{ item.note }}</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding:100rpx 0 0">
+          <lan-button
+            color="linear-gradient(to right, {{config.skin.heightopColors}}, {{config.skin.primaryColors}})"
+            block
+            round
+            disabled="{{loading.disabled}}"
+            loading="{{loading.enable}}"
+            loading-text="{{loading.text}}"
+            loading-class="loading-btn"
+            custom-class="submit-btn"
+            bind:tap="bindSetDrivingInfo"
+          >
+            保存信息
+        </lan-button>
+      </view>
+    </lan-cell-group>
+  </view>
+  
+  <lan-loading-page
+    v-if="loadingStart"
+    loading-title="{{ title }}"
+    loading-type="{{ loadingType }}"
+    loading-start="{{ loadingStart }}"
+    bind:getLoadingDataCom="bindLoadingDataCom"
+  />
+</view>

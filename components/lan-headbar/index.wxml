@@ -1,0 +1,43 @@
+<view
+  class="`nav-bar lan-headbar {{ ghostBar ? 'ghost-bar' : '' }} {{ fixed ? 'fixed-bar' : '' }} ^safety-distance"
+  style="{{ styleText }}"
+>
+  <view class="nav-bar-box ^flex-box ^flex-box-aic ^flex-box-jcb" style="height: {{ barHieght }}rpx">
+    <view class="nav-bar-left ^flex-box ^flex-box-aic ^flex-box-jcs" bind:tap="onClickLeft">
+      <block wx:if="{{ leftArrow || leftText }}">
+        <lan-iconfont
+          wx:if="{{ leftArrow }}"
+          class="icon nav-bar-arrow ~lan-headbar-arrow ^flex-box ^flex-box-aic ^flex-box-jcc"
+          name="{{ leftArrowName ? leftArrowName : 'lan-icon-arrow-left' }}"
+          style="height: 100%"
+          color="{{ leftArrowColor }}"
+          size="56"
+        />
+        <view
+          wx:if="{{ leftText }}"
+          class="nav-bar-text"
+          hover-stay-time="70"
+          style="color:{{ leftArrowColor }}"
+        >{{ leftText }}</view>
+      </block>
+      <slot wx:else name="left" />
+    </view>
+    <view class="~lan-headbar-title nav-bar-title" style="{{ titleColor ? 'color:' + titleColor : '' }}">
+      <block wx:if="{{ title }}">{{ title }}</block>
+      <slot wx:else name="title" />
+    </view>
+    <view class="right-block">{{ config.copyright.author }}</view>
+    <view class="nav-bar-middle ^flex-box ^flex-box-aic ^flex-box-jcc">
+      <slot name="middle" />
+    </view>
+    <!-- <view class="nav-bar-right" bind:tap="onClickRight">
+      <view
+        wx:if="{{ rightText }}"
+        class="nav-bar-text"
+        hover-class="nav-bar-text--hover"
+        hover-stay-time="70"
+      >{{ rightText }}</view>
+      <slot wx:else name="right" />
+    </view> -->
+  </view>
+</view>

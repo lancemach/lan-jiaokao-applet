@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "lan-index-bar": "/components/index-bar/index",
+    "lan-index-anchor": "/components/index-anchor/index"
+  }
+}

@@ -1,0 +1,38 @@
+<!--pages/lancema/index.wxml-->
+<view class="container">
+    <view class="lancema-box flex-box flex-box-jcc">
+        <view class="box">
+            <view class="lancema">
+                <view class="logo">
+                    <lan-iconfont name="lma-icon-lancema1" size="180" />
+                </view>
+                <view class="name">
+                    {{config.copyright.author}} {{config.copyright.data}}
+                </view>
+                <view class="version">
+                    {{config.version}}
+                </view>
+                <view class="wx-code {{wxCodePreview ? 'wx-code-max' : 'wx-code-min'}}">
+                    <view class="code-box" bindtap="bindPreviewImage">
+                        <image
+                            src="/static/image/lstx-wx-code.gif"
+                            class="pic"
+                            mode="aspectFill"
+                            style="margin-top:60rpx"
+                        />
+                    </view>
+                    
+                </view>
+            </view>
+            <!-- <view class="system">
+                <view class="list">
+                    <view class="item">设备型号：{{systemInfo.model}}</view>
+                    <view class="item">微信版本：{{systemInfo.version}}</view>
+                    <view class="item">系统版本：{{systemInfo.system}}</view>
+                    <view class="item">屏幕视口：{{systemInfo.screenWidth}} * {{systemInfo.screenHeight}}</view>
+                    <view class="item">WIFI开关：{{systemInfo.wifiEnabled ? '开启' : '关闭'}}</view>
+                </view>
+            </view> -->
+        </view>
+    </view>
+</view>

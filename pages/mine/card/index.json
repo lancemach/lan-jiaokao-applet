@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的卡包",
+  "usingComponents": {
+    "lan-empty": "/components/empty/index"
+  }
+}

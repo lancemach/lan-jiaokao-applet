@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "lan-count-down": "/components/count-down/index",
+    "lan-popup": "/components/popup/index",
+    "lan-tag": "/components/tag/index",
+    "lan-empty": "/components/empty/index",
+    "lan-circle": "/components/circle/index"
+  }
+}
